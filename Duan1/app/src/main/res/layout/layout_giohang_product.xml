@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp">
+
+    <CheckBox
+        android:id="@+id/cbox_cart"
+        android:layout_width="35dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+    <ImageView
+        android:id="@+id/img_cart"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/hamburge"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp">
+        <TextView
+            android:id="@+id/txt_cart_name"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:text="Hamburger"
+            android:textStyle="bold"
+            android:textSize="18dp"/>
+        <TextView
+            android:id="@+id/txt_cart_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:textSize="18dp"
+            android:text="20.000" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+        <ImageButton
+            android:id="@+id/btn_total_cart"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/tang"/>
+        <EditText
+            android:id="@+id/txt_quantity_cart"
+            android:layout_width="50dp"
+            android:layout_height="33dp"
+            android:gravity="center"
+            android:background="@null"
+            android:textSize="18dp"
+            android:text="1"/>
+        <ImageButton
+            android:id="@+id/btn_reduce_cart"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/tru"/>
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/btn_delete_cart"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:scaleType="centerInside"
+        android:background="@null"
+        android:layout_gravity="center"
+        android:src="@drawable/delete"/>
+</LinearLayout>
