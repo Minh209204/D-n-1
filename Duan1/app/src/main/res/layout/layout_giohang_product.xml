@@ -46,11 +46,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center">
         <ImageButton
-            android:id="@+id/btn_total_cart"
+            android:id="@+id/btn_reduce_cart"
             android:layout_width="33dp"
             android:layout_height="33dp"
             android:scaleType="centerInside"
-            android:src="@drawable/tang"/>
+            android:src="@drawable/tru"/>
         <EditText
             android:id="@+id/txt_quantity_cart"
             android:layout_width="50dp"
@@ -60,11 +60,11 @@
             android:textSize="18dp"
             android:text="1"/>
         <ImageButton
-            android:id="@+id/btn_reduce_cart"
+            android:id="@+id/btn_total_cart"
             android:layout_width="33dp"
             android:layout_height="33dp"
             android:scaleType="centerInside"
-            android:src="@drawable/tru"/>
+            android:src="@drawable/tang"/>
     </LinearLayout>
 
     <ImageButton

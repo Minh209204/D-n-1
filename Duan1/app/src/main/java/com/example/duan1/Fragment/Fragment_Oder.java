@@ -22,8 +22,8 @@ import java.util.List;
 public class Fragment_Oder extends Fragment {
     RecyclerView recyclerView;
     RecyclerView_Cart recyclerView_cart;
-    RecyclerView_Cart getRecyclerView_cart;
     TextView giaTien;
+
 
     @Nullable
     @Override
@@ -35,6 +35,8 @@ public class Fragment_Oder extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         recyclerView = view.findViewById(R.id.recyclerView);
+        giaTien = view.findViewById(R.id.giaTien);
+
         List<Product> list = new ArrayList<>();
         list.add(new Product(R.drawable.cake,"Bánh kem 1", 12000, true));
         list.add(new Product(R.drawable.hamburge,"Hamburger 1", 12000));
@@ -48,13 +50,8 @@ public class Fragment_Oder extends Fragment {
         list.add(new Product(R.drawable.cake,"Bánh kem 1", 12000));
 
         Funcion_recyclerView_cart(list);
-//        giaTien.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                recyclerView_cart.tinhtong()
-//            }
-//        });
 
+        recyclerView_cart = new RecyclerView_Cart(getContext(), list);
     }
 
     private void Funcion_recyclerView_cart(List<Product> list){
@@ -63,5 +60,6 @@ public class Fragment_Oder extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(recyclerView_cart);
     }
+
 
 }

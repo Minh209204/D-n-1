@@ -42,6 +42,8 @@ public class RecyclerView_Vertical_Product extends RecyclerView.Adapter<Recycler
         holder.img_Vertical.setImageResource(product.getImg());
         holder.txt_Vertical_name.setText(product.getName());
         holder.txt_Vertical_price.setText(product.getPrice() + "");
+
+
     }
 
     @Override

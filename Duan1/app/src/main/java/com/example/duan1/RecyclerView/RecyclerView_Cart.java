@@ -13,18 +13,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.duan1.Fragment.Fragment_Oder;
 import com.example.duan1.Model.Product;
 import com.example.duan1.R;
 
 import java.util.List;
 
 public class RecyclerView_Cart extends RecyclerView.Adapter<RecyclerView_Cart.Holder_Cart>{
-
     private Context context;
     private List<Product> list;
     Product product;
-    int tong = 0;
-
+    int tong = 0, quantity = 1;
 
     public RecyclerView_Cart(Context context, List<Product> list) {
         this.context = context;
@@ -55,6 +54,31 @@ public class RecyclerView_Cart extends RecyclerView.Adapter<RecyclerView_Cart.Ho
         }else{
             holder.cbox_cart.setChecked(false);
         }
+
+        tinhTien(holder);
+
+
+        holder.btn_total_cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.txt_quantity_cart.setText(++quantity + "");
+            }
+        });
+
+        holder.btn_reduce_cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (quantity >= 0){
+                    quantity-= 1;
+                    tong -= product.getPrice();
+                    holder.txt_quantity_cart.setText(--quantity + "");
+                } else if (quantity <= 0) {
+                    quantity = 0;
+                    holder.txt_quantity_cart.setText(quantity + "");
+                }
+            }
+        });
+
     }
 
     @Override
@@ -82,4 +106,19 @@ public class RecyclerView_Cart extends RecyclerView.Adapter<RecyclerView_Cart.Ho
         }
     }
 
+    public int tinhTien(Holder_Cart holder){
+        holder.cbox_cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (holder.cbox_cart.isChecked() == true){
+                    tong += product.getPrice();
+                    Toast.makeText(context, String.valueOf(tong), Toast.LENGTH_SHORT).show();
+                } else if (holder.cbox_cart.isChecked() == false) {
+                    tong -= product.getPrice();
+                    Toast.makeText(context, String.valueOf(tong), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        return tong;
+    }
 }
