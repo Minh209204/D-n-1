@@ -9,19 +9,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.duan1.Model.Product;
 import com.example.duan1.R;
-import com.example.duan1.RecyclerView.RecyclerView_Cart;
+//import com.example.duan1.RecyclerView.RecyclerView_Cart;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Fragment_Oder extends Fragment {
     RecyclerView recyclerView;
-    RecyclerView_Cart recyclerView_cart;
+//    RecyclerView_Cart recyclerView_cart;
     TextView giaTien;
 
 
@@ -37,29 +33,29 @@ public class Fragment_Oder extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         giaTien = view.findViewById(R.id.giaTien);
 
-        List<Product> list = new ArrayList<>();
-        list.add(new Product(R.drawable.cake,"Bánh kem 1", 12000, true));
-        list.add(new Product(R.drawable.hamburge,"Hamburger 1", 12000));
-        list.add(new Product(R.drawable.more,"More 1", 12000));
-        list.add(new Product(R.drawable.ramen,"Ramen 1", 12000, true));
-        list.add(new Product(R.drawable.rau,"Rau 1", 12000));
-        list.add(new Product(R.drawable.more,"More 1", 12000));
-        list.add(new Product(R.drawable.cake,"Bánh kem 1", 12000));
-        list.add(new Product(R.drawable.rau,"Rau 1", 12000));
-        list.add(new Product(R.drawable.more,"More 1", 12000));
-        list.add(new Product(R.drawable.cake,"Bánh kem 1", 12000));
+//        List<Product> list = new ArrayList<>();
+//        list.add(new Product(R.drawable.cake,"Bánh kem 1", 12000, true));
+//        list.add(new Product(R.drawable.hamburge,"Hamburger 1", 12000));
+//        list.add(new Product(R.drawable.more,"More 1", 12000));
+//        list.add(new Product(R.drawable.ramen,"Ramen 1", 12000, true));
+//        list.add(new Product(R.drawable.rau,"Rau 1", 12000));
+//        list.add(new Product(R.drawable.more,"More 1", 12000));
+//        list.add(new Product(R.drawable.cake,"Bánh kem 1", 12000));
+//        list.add(new Product(R.drawable.rau,"Rau 1", 12000));
+//        list.add(new Product(R.drawable.more,"More 1", 12000));
+//        list.add(new Product(R.drawable.cake,"Bánh kem 1", 12000));
 
-        Funcion_recyclerView_cart(list);
-
-        recyclerView_cart = new RecyclerView_Cart(getContext(), list);
+//        Funcion_recyclerView_cart(list);
+//
+//        recyclerView_cart = new RecyclerView_Cart(getContext(), list);
     }
 
-    private void Funcion_recyclerView_cart(List<Product> list){
-        recyclerView_cart = new RecyclerView_Cart(getContext(), list);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(recyclerView_cart);
-    }
+//    private void Funcion_recyclerView_cart(List<Product> list){
+//        recyclerView_cart = new RecyclerView_Cart(getContext(), list);
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
+//        recyclerView.setLayoutManager(layoutManager);
+//        recyclerView.setAdapter(recyclerView_cart);
+//    }
 
 
 }
