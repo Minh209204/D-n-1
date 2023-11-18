@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DataHelper extends SQLiteOpenHelper {
-    private static String name = "Duan1.db";
+    private static String name = "Duan01.db";
     private static int version = 1;
 
     public DataHelper(Context context){
@@ -14,37 +14,49 @@ public class DataHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String taikhoan = "CREATE TABLE TAIKHOAN(MATK INTEGER NOT NULL, TAIKHOAN TEXT, SDT INTEGER, PRIMARY KEY(MATK));";
-        String khachhang = "CREATE TABLE KHACHHANG(MAKH INTEGER NOT NULL, MATK INTEGER, TENKH TEXT ,SDT INTEGER,ADDRESS TEXT,FOREIGN KEY(MATK) REFERENCES TAIKHOAN(MATK),PRIMARY KEY(MAKH));";
-        String qltaikhoan = "CREATE TABLE QLKHACHHANG(MAQLKH INTEGER NOT NULL, MAKH INTEGER, PRIMARY KEY(MAQLKH), FOREIGN KEY(MAKH) REFERENCES KHACHHANG (MAKH));";
-        String theloai = "CREATE TABLE THELOAI(MATL INTEGER NOT NULL, TENTL TEXT, PRIMARY KEY(MATL));";
-        String sanpham = "CREATE TABLE SANPHAM(MASP INTEGER NOT NULL, TENSP TEXT, MATL INTEGER, GIATIEN INTEGER, SOLUONG INTEGER, GIOITHIEU TEXT, FOREIGN KEY(MATL) REFERENCES HELOAI(MATL), PRIMARY KEY(MASP));";
-        String qlsanpham = "CREATE TABLE QLSANPHAM(MAQLSP INTEGER NOT NULL, MASP INTEGER, FOREIGN KEY(MASP) REFERENCES SANPHAM(MASP), PRIMARY KEY(MAQLSP));";
-        String giohang = "CREATE TABLE GIOHANG (MAGH INTEGER NOT NULL, MASP INTEGER, SOLUONG INTEGER, GIATIEN INTEGER, FOREIGN KEY(MASP) REFERENCES SANPHAM(MASP), PRIMARY KEY(MAGH));";
-        String hoadon = "CREATE TABLE HOADON(MAHD INTEGER NOT NULL, MAKH INTEGER, MASP INTEGER, SOLUONG INTEGER, STK INTEGER, GIATIEN INTEGER, ADDRESS INTEGER, FOREIGN KEY(MAKH) REFERENCES KHACHHANG(MAKH), FOREIGN KEY(MASP) REFERENCES GIOHANG(MASP), PRIMARY KEY(MAHD));";
-        String thongke = "CREATE TABLE THONGKE (MATKINTEGER NOT NULL, MAHDINTEGER, MASP INTEGER, SOLUONGINTEGER, PRIMARY KEY(MATK), FOREIGN KEY(MAHD) REFERENCES HOADON(MAHD));";
+        String TAIKHOAN = "CREATE TABLE \"TAIKHOAN\" (\n" +
+                "\t\"MATK\"\tINTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+                "\t\"TAIKHOAN\"\tTEXT,\n" +
+                "\t\"MATKHAU\"\tTEXT,\n" +
+                "\t\"SDT\"\tINTEGER\n" +
+                ");";
 
-        db.execSQL(taikhoan);
-        db.execSQL(khachhang);
-        db.execSQL(qltaikhoan);
-        db.execSQL(theloai);
-        db.execSQL(sanpham);
-        db.execSQL(qlsanpham);
-        db.execSQL(giohang);
-        db.execSQL(hoadon);
-        db.execSQL(thongke);
+        String KHACHHANG = "CREATE TABLE \"KHACHHANG\" (\n" +
+                "\t\"MAKH\"\tINTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+                "\t\"MATK\"\tINTEGER,\n" +
+                "\t\"TENKH\"\tTEXT,\n" +
+                "\t\"SDT\"\tINTEGER,\n" +
+                "\t\"ADDRESS\"\tTEXT,\n" +
+                "\tFOREIGN KEY(\"MATK\") REFERENCES \"TAIKHOAN\"(\"MATK\")\n" +
+                ");";
+
+        String THELOAI = "CREATE TABLE \"THELOAI\" (\n" +
+                "\t\"MATL\"\tINTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+                "\t\"TENTL\"\tTEXT\n" +
+                ");";
+
+        String SANPHAM = "CREATE TABLE \"SANPHAM\" (\n" +
+                "\t\"MASP\"\tINTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+                "\t\"MATL\"\tINTEGER,\n" +
+                "\t\"TENSP\"\tTEXT,\n" +
+                "\t\"GIATIEN\"\tINTEGER,\n" +
+                "\t\"IMG\"\tINTEGER,\n" +
+                "\t\"SOLUONG\"\tINTEGER,\n" +
+                "\t\"GIOITHIEU\"\tTEXT,\n" +
+                "\tFOREIGN KEY(\"MATL\") REFERENCES \"THELOAI\"(\"MATL\")\n" +
+                ");";
+
+        db.execSQL(TAIKHOAN);
+        db.execSQL(KHACHHANG);
+        db.execSQL(THELOAI);
+        db.execSQL(SANPHAM);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-        db.execSQL("Drop table taikhoan");
-        db.execSQL("Drop table khachhang");
-        db.execSQL("Drop table qltaikhoan");
-        db.execSQL("Drop table theloai");
-        db.execSQL("Drop table sanpham");
-        db.execSQL("Drop table qlsanpham");
-        db.execSQL("Drop table giohang");
-        db.execSQL("Drop table hoadon");
-        db.execSQL("Drop table thongke");
+        db.execSQL("DROP TABLE TAIKHOAN");
+        db.execSQL("DROP TABLE KHACHHANG");
+        db.execSQL("DROP TABLE THELOAI");
+        db.execSQL("DROP TABLE SANPHAM");
     }
 }

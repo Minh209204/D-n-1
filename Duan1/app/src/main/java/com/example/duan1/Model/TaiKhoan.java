@@ -1,11 +1,11 @@
 package com.example.duan1.Model;
 
 public class TaiKhoan {
-    private int MaTK;
-    private String taiKhoan, matKhau, SDT;
+    private int MaTK, SDT;
+    private String taiKhoan, matKhau;
 
-    public TaiKhoan(int maTK, String taiKhoan, String matKhau, String SDT) {
-        MaTK = maTK;
+    public TaiKhoan(int maTK, String taiKhoan, String matKhau, int SDT) {
+        this.MaTK = maTK;
         this.taiKhoan = taiKhoan;
         this.matKhau = matKhau;
         this.SDT = SDT;
@@ -38,11 +38,11 @@ public class TaiKhoan {
         this.matKhau = matKhau;
     }
 
-    public String getSDT() {
+    public int getSDT() {
         return SDT;
     }
 
-    public void setSDT(String SDT) {
+    public void setSDT(int SDT) {
         this.SDT = SDT;
     }
 }

@@ -9,16 +9,24 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.duan1.Database.Table_SanPham;
+import com.example.duan1.Model.SanPham;
 import com.example.duan1.R;
-//import com.example.duan1.RecyclerView.RecyclerView_Cart;
+
+import java.util.ArrayList;
+import java.util.List;
+import com.example.duan1.RecyclerView.RecyclerView_Cart;
 
 
 public class Fragment_Oder extends Fragment {
     RecyclerView recyclerView;
-//    RecyclerView_Cart recyclerView_cart;
+    RecyclerView_Cart recyclerView_cart;
     TextView giaTien;
+    SanPham pham;
+    Table_SanPham table_sanPham;
 
 
     @Nullable
@@ -32,30 +40,33 @@ public class Fragment_Oder extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         recyclerView = view.findViewById(R.id.recyclerView);
         giaTien = view.findViewById(R.id.giaTien);
+        table_sanPham = new Table_SanPham(getContext());
 
-//        List<Product> list = new ArrayList<>();
-//        list.add(new Product(R.drawable.cake,"Bánh kem 1", 12000, true));
-//        list.add(new Product(R.drawable.hamburge,"Hamburger 1", 12000));
-//        list.add(new Product(R.drawable.more,"More 1", 12000));
-//        list.add(new Product(R.drawable.ramen,"Ramen 1", 12000, true));
-//        list.add(new Product(R.drawable.rau,"Rau 1", 12000));
-//        list.add(new Product(R.drawable.more,"More 1", 12000));
-//        list.add(new Product(R.drawable.cake,"Bánh kem 1", 12000));
-//        list.add(new Product(R.drawable.rau,"Rau 1", 12000));
-//        list.add(new Product(R.drawable.more,"More 1", 12000));
-//        list.add(new Product(R.drawable.cake,"Bánh kem 1", 12000));
+        List<SanPham> list = table_sanPham.getAll();
 
-//        Funcion_recyclerView_cart(list);
-//
-//        recyclerView_cart = new RecyclerView_Cart(getContext(), list);
+
+//        List<SanPham> list = new ArrayList<>();
+//        list.add(new SanPham(R.drawable.cake,"Bánh kem 1", 12000));
+//        list.add(new SanPham(R.drawable.hamburge,"Hamburger 1", 12000));
+//        list.add(new SanPham(R.drawable.more,"More 1", 12000));
+//        list.add(new SanPham(R.drawable.ramen,"Ramen 1", 12000));
+//        list.add(new SanPham(R.drawable.rau,"Rau 1", 12000));
+//        list.add(new SanPham(R.drawable.more,"More 1", 12000));
+//        list.add(new SanPham(R.drawable.cake,"Bánh kem 1", 12000));
+//        list.add(new SanPham(R.drawable.rau,"Rau 1", 12000));
+//        list.add(new SanPham(R.drawable.more,"More 1", 12000));
+//        list.add(new SanPham(R.drawable.cake,"Bánh kem 1", 12000));
+
+        Funcion_recyclerView_cart(list);
+
     }
 
-//    private void Funcion_recyclerView_cart(List<Product> list){
-//        recyclerView_cart = new RecyclerView_Cart(getContext(), list);
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-//        recyclerView.setLayoutManager(layoutManager);
-//        recyclerView.setAdapter(recyclerView_cart);
-//    }
+    private void Funcion_recyclerView_cart(List<SanPham> list){
+        recyclerView_cart = new RecyclerView_Cart(getContext(), list);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(recyclerView_cart);
+    }
 
 
 }

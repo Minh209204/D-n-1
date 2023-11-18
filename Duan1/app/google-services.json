@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "27831038199",
+    "project_id": "mon-du-an-1",
+    "storage_bucket": "mon-du-an-1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:27831038199:android:ed6496313836ddce4ae3f2",
+        "android_client_info": {
+          "package_name": "com.example.duan1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBDm4uYkTzZjH9AMkZtYoF7VbJTFinU5o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
