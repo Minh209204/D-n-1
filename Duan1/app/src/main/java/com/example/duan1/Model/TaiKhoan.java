@@ -1,5 +1,7 @@
 package com.example.duan1.Model;
 
+import java.util.HashMap;
+
 public class TaiKhoan {
     private int MaTK, SDT;
     private String taiKhoan, matKhau;
@@ -9,6 +11,12 @@ public class TaiKhoan {
         this.taiKhoan = taiKhoan;
         this.matKhau = matKhau;
         this.SDT = SDT;
+    }
+
+    public TaiKhoan(int SDT, String taiKhoan, String matKhau) {
+        this.SDT = SDT;
+        this.taiKhoan = taiKhoan;
+        this.matKhau = matKhau;
     }
 
     public TaiKhoan() {
@@ -44,5 +52,14 @@ public class TaiKhoan {
 
     public void setSDT(int SDT) {
         this.SDT = SDT;
+    }
+
+    public HashMap<String, Object> canvert(){
+        HashMap<String, Object> work = new HashMap<>();
+        work.put("taiKhoan", taiKhoan);
+        work.put(matKhau, matKhau);
+        work.put("SDT", SDT);
+
+        return work;
     }
 }
