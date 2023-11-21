@@ -57,7 +57,7 @@ public class Register extends AppCompatActivity {
 
                 HashMap<String, Object> hashMap = taiKhoan.canvert();
 
-                firebaseFirestore.collection(String.valueOf(taiKhoan)).document(sdt)
+                firebaseFirestore.collection(String.valueOf(taiKhoan)).document(String.valueOf(taiKhoan.getMaTK()))
                         .set(hashMap)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
