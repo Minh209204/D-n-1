@@ -15,15 +15,34 @@
         android:theme="@style/Theme.Duan1"
         tools:targetApi="31">
         <activity
-            android:name=".Activity.Create_Product"
+            android:name=".RecyclerView.RecyclerView_ThongKe_admin"
             android:exported="false" />
         <activity
-            android:name=".Activity.QLKhachHang"
-            android:exported="true">
-
-        </activity>
+            android:name=".RecyclerView.RecylerView_Qlsanpham_Admin"
+            android:exported="false" />
         <activity
-            android:name=".Activity.DanhSachSanPham"
+            android:name=".RecyclerView.RecylerView_Qlnguoidung_Admin"
+            android:exported="false" />
+        <activity
+            android:name=".Fragment.Fragment_ThongTin_Admin"
+            android:exported="false" />
+        <activity
+            android:name=".RecyclerView.RecylerView_LayLaiMK"
+            android:exported="false" />
+        <activity
+            android:name=".RecyclerView.RecylerView_YeuThich"
+            android:exported="false" />
+        <activity
+            android:name=".RecyclerView.RecylerView_DoiPass"
+            android:exported="false" />
+        <activity
+            android:name=".RecyclerView.RecylerView_ThongTinKh"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.InforProduct"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.Main"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,21 +51,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activity.InforProduct"
-            android:exported="true" />
-        <activity
-            android:name=".Activity.Main"
-            android:exported="true">
-
-        </activity>
-        <activity
             android:name=".Activity.Register"
             android:exported="true" />
         <activity
             android:name=".Activity.Login"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
     </application>
 
 </manifest>
