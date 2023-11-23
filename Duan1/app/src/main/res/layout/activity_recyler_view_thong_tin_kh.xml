@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RecyclerView.RecylerView_ThongTinKh"
+    android:orientation="vertical"
+    android:background="#F4F3F3">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_thongtin"
+        android:layout_width="match_parent"
+        android:background="#F4F3F3"
+        android:layout_height="?attr/actionBarSize">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Thông tin"
+            android:layout_gravity="center"
+            android:textColor="#000000"
+            android:textSize="25dp"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/thoat"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Thoát"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:gravity="center"/>
+    </androidx.appcompat.widget.Toolbar>
+
+    <EditText
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:id="@+id/edt_name"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="60dp"
+        android:hint="Họ tên"
+        android:textColorHint="#2E2E2E"
+        android:background="@drawable/border"
+        android:padding="15dp"
+        android:drawablePadding="15dp"/>
+
+
+    <EditText
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:id="@+id/edt_sodt"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="60dp"
+        android:hint="Số điện thoại"
+        android:textColorHint="#2E2E2E"
+        android:background="@drawable/border"
+        android:padding="15dp"
+        android:drawablePadding="15dp" />
+
+    <EditText
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:id="@+id/edt_ngaysinh"
+        android:layout_width="match_parent"
+        android:layout_marginTop="15dp"
+        android:layout_height="60dp"
+        android:hint="Ngày sinh"
+        android:textColorHint="#2E2E2E"
+        android:background="@drawable/border"
+        android:padding="15dp"
+        android:drawablePadding="15dp"/>
+    <EditText
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:id="@+id/edt_email"
+        android:layout_width="match_parent"
+        android:layout_marginTop="15dp"
+        android:layout_height="60dp"
+        android:hint="Email"
+        android:textColorHint="#2E2E2E"
+        android:background="@drawable/border"
+        android:padding="15dp"
+        android:drawablePadding="15dp"/>
+
+    <Button
+        android:id="@+id/btn_update"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Update"
+        android:textColor="#fff"
+        android:background="@drawable/border5"/>
+
+</LinearLayout>
