@@ -1,7 +1,6 @@
 package com.example.duan1.RecyclerView;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,20 +11,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.duan1.Activity.Product;
-import com.example.duan1.Model.SanPham;
+//import com.example.duan1.Activity.InforProduct;
+import com.example.duan1.Model.Model_SanPham;
 import com.example.duan1.R;
 
 import java.util.List;
 
 public class RecyclerView_Vertical_Product extends RecyclerView.Adapter<RecyclerView_Vertical_Product.Holder_Vertical>{
     private Context context;
-    private List<SanPham> list;
-    SanPham sanPham;
-    public RecyclerView_Vertical_Product(Context context, List<SanPham> list) {
-        this.context = context;
-        this.list = list;
-    }
+    private List<Model_SanPham> list;
+//    SanPham sanPham;
+//    public RecyclerView_Vertical_Product(Context context, List<SanPham> list) {
+//        this.context = context;
+//        this.list = list;
+//    }
 
     @NonNull
     @Override
@@ -40,17 +39,17 @@ public class RecyclerView_Vertical_Product extends RecyclerView.Adapter<Recycler
 
     @Override
     public void onBindViewHolder(@NonNull Holder_Vertical holder, int position) {
-        sanPham = list.get(position);
+//        sanPham = list.get(position);
 
-        holder.img_Vertical.setImageResource(sanPham.getImg());
-        holder.txt_Vertical_name.setText(sanPham.getTenSp());
-        holder.txt_Vertical_price.setText(sanPham.getGiaTien() + "");
-        holder.layout_product.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                context.startActivity(new Intent(context, Product.class));
-            }
-        });
+//        holder.img_Vertical.setImageResource(sanPham.getImg());
+//        holder.txt_Vertical_name.setText(sanPham.getTenSp());
+//        holder.txt_Vertical_price.setText(sanPham.getGiaTien() + "");
+//        holder.layout_product.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                context.startActivity(new Intent(context, InforProduct.class));
+//            }
+//        });
 
     }
 

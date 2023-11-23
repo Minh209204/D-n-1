@@ -13,19 +13,18 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.duan1.Fragment.Fragment_Oder;
-import com.example.duan1.Model.SanPham;
+import com.example.duan1.Model.Model_SanPham;
 import com.example.duan1.R;
 
 import java.util.List;
 
 public class RecyclerView_Cart extends RecyclerView.Adapter<RecyclerView_Cart.Holder_Cart>{
     private Context context;
-    private List<SanPham> list;
-    SanPham sanPham;
+    private List<Model_SanPham> list;
+    Model_SanPham sanPham;
     int tong = 0, quantity = 1;
 
-    public RecyclerView_Cart(Context context, List<SanPham> list) {
+    public RecyclerView_Cart(Context context, List<Model_SanPham> list) {
         this.context = context;
         this.list = list;
     }
@@ -45,8 +44,8 @@ public class RecyclerView_Cart extends RecyclerView.Adapter<RecyclerView_Cart.Ho
         sanPham = list.get(position);
 
 //        holder.img_cart.setImageResource(sanPham.getImg());
-        holder.txt_cart_name.setText(sanPham.getTenSp());
-        holder.txt_cart_price.setText(String.valueOf(sanPham.getGiaTien()));
+        holder.txt_cart_name.setText(sanPham.getTenSP());
+        holder.txt_cart_price.setText(String.valueOf(sanPham.getGiaTienSP()));
 //        if (product.isCheckBox() == true){
 //            holder.cbox_cart.setChecked(true);
 //            tong += product.getPrice();
@@ -70,7 +69,7 @@ public class RecyclerView_Cart extends RecyclerView.Adapter<RecyclerView_Cart.Ho
             public void onClick(View view) {
                 if (quantity >= 0){
                     quantity-= 1;
-                    tong -= sanPham.getGiaTien();
+                    tong -= sanPham.getGiaTienSP();
                     holder.txt_quantity_cart.setText(quantity + "");
                 } else if (quantity <= 0) {
                     quantity = 0;
@@ -111,10 +110,10 @@ public class RecyclerView_Cart extends RecyclerView.Adapter<RecyclerView_Cart.Ho
             @Override
             public void onClick(View view) {
                 if (holder.cbox_cart.isChecked() == true){
-                    tong += sanPham.getGiaTien();
+                    tong += sanPham.getGiaTienSP();
                     Toast.makeText(context, String.valueOf(tong), Toast.LENGTH_SHORT).show();
                 } else if (holder.cbox_cart.isChecked() == false) {
-                    tong -= sanPham.getGiaTien();
+                    tong -= sanPham.getGiaTienSP();
                     Toast.makeText(context, String.valueOf(tong), Toast.LENGTH_SHORT).show();
                 }
             }

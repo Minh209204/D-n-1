@@ -10,21 +10,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.duan1.Database.Table_SanPham;
-import com.example.duan1.Model.SanPham;
+import com.example.duan1.Model.Model_SanPham;
 import com.example.duan1.R;
 
-public class Product extends AppCompatActivity {
+public class InforProduct extends AppCompatActivity {
     ImageView img_product;
     TextView txt_product_name, txt_product_price;
     Button btnAdd;
-    SanPham pham;
+    Model_SanPham pham;
     Table_SanPham table_sanPham;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
-        pham = new SanPham();
+        pham = new Model_SanPham();
         table_sanPham = new Table_SanPham(this);
 
         img_product = findViewById(R.id.img_product);
@@ -35,11 +35,11 @@ public class Product extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pham.setTenSp(txt_product_name.getText().toString());
-                pham.setGiaTien(Integer.parseInt(txt_product_price.getText().toString()));
+                pham.setTenSP(txt_product_name.getText().toString());
+                pham.setGiaTienSP(Integer.parseInt(txt_product_price.getText().toString()));
 
                 if (table_sanPham.insert(pham)){
-                    startActivity(new Intent(Product.this, Main.class));
+                    startActivity(new Intent(InforProduct.this, Main.class));
                 }
             }
         });

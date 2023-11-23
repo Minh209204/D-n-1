@@ -12,8 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.duan1.Database.Table_TaiKhoan;
-import com.example.duan1.Model.SanPham;
-import com.example.duan1.Model.TaiKhoan;
+import com.example.duan1.Model.Model_TaiKhoan;
 import com.example.duan1.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -25,7 +24,7 @@ public class Login extends AppCompatActivity {
     Button btn_SignUp;
     ImageButton btn_img_facebook, btn_img_google, btn_img_gmail;
     TextView txt_createAccount;
-    TaiKhoan khoan;
+    Model_TaiKhoan khoan;
     Table_TaiKhoan table_taiKhoan;
 
     @Override
@@ -33,7 +32,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         table_taiKhoan = new Table_TaiKhoan(this);
-        khoan = new TaiKhoan();
+        khoan = new Model_TaiKhoan();
 
         error_login_account = findViewById(R.id.error_login_account);
         error_login_password = findViewById(R.id.error_login_password);
