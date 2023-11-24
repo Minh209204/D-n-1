@@ -2,7 +2,6 @@ package com.example.duan1.DataHelper;
 
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +13,13 @@ import com.example.duan1.R;
 
 import java.util.List;
 
-public class Adapter_Product extends BaseAdapter {
+public class Adapter_TheLoai extends BaseAdapter {
 
     List<Model_TheLoai> list;
     Context context;
     Model_TheLoai model_theLoai;
 
-    public Adapter_Product(List<Model_TheLoai> list, Context context) {
+    public Adapter_TheLoai(List<Model_TheLoai> list, Context context) {
         this.list = list;
         this.context = context;
     }

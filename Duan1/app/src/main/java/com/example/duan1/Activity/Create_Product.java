@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.duan1.DataHelper.Adapter_Product;
+import com.example.duan1.DataHelper.Adapter_TheLoai;
 import com.example.duan1.Database.Table_SanPham;
 import com.example.duan1.Database.Table_TheLoai;
 import com.example.duan1.Model.Model_SanPham;
@@ -25,7 +25,7 @@ import com.example.duan1.R;
 import java.util.List;
 
 public class Create_Product extends AppCompatActivity {
-    Adapter_Product adapter_product;
+    Adapter_TheLoai adapter_theLoai;
     Table_TheLoai table_theLoai;
     Model_TheLoai model_theLoai;
     Table_SanPham table_sanPham;
@@ -60,8 +60,8 @@ public class Create_Product extends AppCompatActivity {
         List<Model_TheLoai> list = table_theLoai.getAll();
 
 
-        adapter_product = new Adapter_Product(list, Create_Product.this);
-        spinner.setAdapter(adapter_product);
+        adapter_theLoai = new Adapter_TheLoai(list, Create_Product.this);
+        spinner.setAdapter(adapter_theLoai);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -76,34 +76,37 @@ public class Create_Product extends AppCompatActivity {
         });
 
 
-//        btn_create.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                model_sanPham = new Model_SanPham();
-//                String name = edt_name.getText().toString();
-//                String price = edt_price.getText().toString();
-//                String theloai = list.get(index).getTenTL();
-//                String anh = edt_anh.getText().toString();
-//                String gioithieu = edt_gioithieu.getText().toString();
-//
-//                model_sanPham.setTenSP(name);
-//                model_sanPham.setGiaTienSP(price);
-//                model_sanPham.setMaTL(theloai);
-//
-//                if (table_qlSanPham.insert(qlSanPham)){
-//                    Toast.makeText(Create_Product.this, "Thêm sản phẩm thành công", Toast.LENGTH_SHORT).show();
-//                    startActivity(new Intent(Create_Product.this, DanhSachSanPham.class));
-//                }else {
-//                    Toast.makeText(Create_Product.this, "Thất bại", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
+        btn_create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                model_sanPham = new Model_SanPham();
+                String name = edt_name.getText().toString();
+                String price = edt_price.getText().toString();
+                String theloai = list.get(index).getTenTL();
+                String anh = edt_anh.getText().toString();
+                String gioithieu = edt_gioithieu.getText().toString();
+                int matl = index;
+
+                model_sanPham.setTenSP(name);
+                model_sanPham.setTenTL(theloai);
+                model_sanPham.setMaTL(matl);
+                model_sanPham.setGiaTienSP(Integer.parseInt(price));
+                model_sanPham.setAnhSP(anh);
+                model_sanPham.setGioiThieuSP(gioithieu);
+                model_sanPham.setTonTai(1);
+                if (table_sanPham.insert(model_sanPham)){
+                    Toast.makeText(Create_Product.this, "Thêm sản phẩm thành công", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(Create_Product.this, DanhSachSanPham.class));
+                }else {
+                    Toast.makeText(Create_Product.this, "Thất bại", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-
         if (id == android.R.id.home){
             onBackPressed();
         }

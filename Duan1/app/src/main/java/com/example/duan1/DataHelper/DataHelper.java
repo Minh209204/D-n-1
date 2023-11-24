@@ -30,8 +30,6 @@ public class DataHelper extends SQLiteOpenHelper {
                 "\tFOREIGN KEY(\"MATK\") REFERENCES \"TAIKHOAN\"(\"MATK\")\n" +
                 ");";
 
-
-
         String THELOAI = "CREATE TABLE \"THELOAI\" (\n" +
                 "\t\"MATL\"\tINTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
                 "\t\"TENTL\"\tTEXT\n" +

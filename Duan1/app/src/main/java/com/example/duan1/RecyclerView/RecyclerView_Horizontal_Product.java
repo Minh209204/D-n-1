@@ -32,7 +32,7 @@ public class RecyclerView_Horizontal_Product extends RecyclerView.Adapter<Recycl
     @Override
     public Holder_Horizontal onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View v = inflater.inflate(R.layout.layout_horizontal_product, null);
+        View v = inflater.inflate(R.layout.rcy_horizontal_product, null);
 
         RecyclerView_Horizontal_Product.Holder_Horizontal holder = new Holder_Horizontal(v);
         return holder;

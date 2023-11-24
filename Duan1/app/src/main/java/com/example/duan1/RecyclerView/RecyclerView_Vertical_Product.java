@@ -30,7 +30,7 @@ public class RecyclerView_Vertical_Product extends RecyclerView.Adapter<Recycler
     @Override
     public Holder_Vertical onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View v = inflater.inflate(R.layout.layout_vertical_product, null);
+        View v = inflater.inflate(R.layout.rcy_vertical_product, null);
 
         RecyclerView_Vertical_Product.Holder_Vertical holder = new Holder_Vertical(v);
 

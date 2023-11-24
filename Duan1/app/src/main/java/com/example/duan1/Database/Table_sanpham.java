@@ -23,7 +23,6 @@ public class Table_SanPham {
 
     public boolean insert(Model_SanPham sanPham){
         ContentValues values = new ContentValues();
-        values.put("MASP", sanPham.getMaSP());
         values.put("MATL", sanPham.getMaTL());
         values.put("TENSP", sanPham.getTenSP());
         values.put("GIATIENSP", sanPham.getGiaTienSP());
@@ -63,13 +62,13 @@ public class Table_SanPham {
 
     public List<Model_SanPham> getAll(){
         List<Model_SanPham> list = new ArrayList<>();
-        Model_SanPham pham = new Model_SanPham();
 
-        Cursor c = db.rawQuery("SELECT * FROM TAIKHOAN", null);
+        Cursor c = db.rawQuery("SELECT * FROM SANPHAM", null);
         c.moveToFirst();
 
         if (c != null && c.getCount() > 0){
             do {
+                Model_SanPham pham = new Model_SanPham();
                 int masp = c.getInt(0);
                 String matl = c.getString(2);
                 String tensp = c.getString(3);
