@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DataHelper extends SQLiteOpenHelper {
     private static String name = "Duan01.db";
-    private static int version = 2 ;
+    private static int version = 4 ;
     public DataHelper(Context context){
         super(context, name, null, version);
     }
@@ -54,22 +54,26 @@ public class DataHelper extends SQLiteOpenHelper {
                 "\t\"TENSP\"\tTEXT,\n" +
                 "\t\"ANHSP\"\tTEXT,\n" +
                 "\t\"GIASP\"\tINTEGER,\n" +
+                "\t\"CHECKBOX\"\tINTEGER,\n" +
                 "\t\"SOLUONGSP\"\tINTEGER,\n" +
-                "\t\"TONGTIEN\"\tINTEGER,\n" +
                 "\tFOREIGN KEY(\"MASP\") REFERENCES \"SANPHAM\"(\"MASP\")\n" +
                 ");";
 
         String HOADON = "CREATE TABLE \"HOADON\" (\n" +
                 "\t\"MAHD\"\tINTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
+                "\t\"MAGH\"\tINTEGER,\n" +
                 "\t\"MAKH\"\tINTEGER,\n" +
                 "\t\"MASP\"\tINTEGER,\n" +
                 "\t\"TENKH\"\tTEXT,\n" +
                 "\t\"SDTKH\"\tINTEGER,\n" +
+                "\t\"ANHSP\"\tTEXT,\n" +
+                "\t\"TENSP\"\tTEXT,\n" +
+                "\t\"GIASP\"\tTEXT,\n" +
                 "\t\"SOLUONGSP\"\tINTEGER,\n" +
                 "\t\"TONGTIEN\"\tINTEGER,\n" +
                 "\t\"DIACHIKH\"\tTEXT,\n" +
                 "\tFOREIGN KEY(\"MAKH\") REFERENCES \"KHACHHANG\"(\"MAKH\"),\n" +
-                "\tFOREIGN KEY(\"MASP\") REFERENCES \"SANPHAM\"(\"MASP\")\n" +
+                "\tFOREIGN KEY(\"MAGH\") REFERENCES \"GIOHANG\"(\"MAGH\")\n" +
                 ");";
 
         String THONGKE = "CREATE TABLE \"THONGKE\" (\n" +
@@ -99,12 +103,10 @@ public class DataHelper extends SQLiteOpenHelper {
 
         db.execSQL(THELOAI);
         db.execSQL(SANPHAM);
-
+        db.execSQL(GIOHANG);
         db.execSQL(HOADON);
         db.execSQL(THONGKE);
         db.execSQL(data_theloai);
-
-
     }
 
     @Override
@@ -113,5 +115,6 @@ public class DataHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE KHACHHANG");
         db.execSQL("DROP TABLE THELOAI");
         db.execSQL("DROP TABLE SANPHAM");
+        db.execSQL("DROP TABLE GIOHANG");
     }
 }

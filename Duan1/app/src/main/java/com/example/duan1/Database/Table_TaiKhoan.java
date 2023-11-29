@@ -53,13 +53,14 @@ public class Table_TaiKhoan {
 
     public List<Model_TaiKhoan> getAll(){
         List<Model_TaiKhoan> list = new ArrayList<>();
-        Model_TaiKhoan khoan = new Model_TaiKhoan();
 
         Cursor c = db.rawQuery("SELECT * FROM TAIKHOAN", null);
         c.moveToFirst();
 
         if (c != null && c.getCount() > 0){
             do {
+                Model_TaiKhoan khoan = new Model_TaiKhoan();
+
                 int id = c.getInt(0);
                 String taikhoan = c.getString(1);
                 String matkhau = c.getString(2);

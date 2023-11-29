@@ -1,6 +1,9 @@
 package com.example.duan1.RecyclerView;
 
+import static android.app.PendingIntent.getActivity;
+
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,20 +14,29 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.duan1.Activity.Login;
+import com.example.duan1.Database.Table_GioHang;
+import com.example.duan1.Database.Table_HoaDon;
+import com.example.duan1.Fragment.Fragment_Cart;
+import com.example.duan1.Model.Model_GioHang;
+import com.example.duan1.Model.Model_HoaDon;
 import com.example.duan1.Model.Model_SanPham;
 import com.example.duan1.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class RecyclerView_Cart extends RecyclerView.Adapter<RecyclerView_Cart.Holder_Cart>{
     private Context context;
-    private List<Model_SanPham> list;
-    Model_SanPham sanPham;
+    private List<Model_GioHang> list;
+    private Table_GioHang table_gioHang;
     int tong = 0, quantity = 1;
 
-    public RecyclerView_Cart(Context context, List<Model_SanPham> list) {
+    public RecyclerView_Cart(Context context, List<Model_GioHang> list) {
         this.context = context;
         this.list = list;
     }
@@ -41,20 +53,47 @@ public class RecyclerView_Cart extends RecyclerView.Adapter<RecyclerView_Cart.Ho
 
     @Override
     public void onBindViewHolder(@NonNull Holder_Cart holder, int position) {
-        sanPham = list.get(position);
+        Model_GioHang model_gioHang = list.get(position);
+        table_gioHang = new Table_GioHang(context);
 
-//        holder.img_cart.setImageResource(sanPham.getImg());
-        holder.txt_cart_name.setText(sanPham.getTenSP());
-        holder.txt_cart_price.setText(String.valueOf(sanPham.getGiaTienSP()));
-//        if (product.isCheckBox() == true){
-//            holder.cbox_cart.setChecked(true);
-//            tong += product.getPrice();
-//            Toast.makeText(context, String.valueOf(tong), Toast.LENGTH_SHORT).show();
-//        }else{
-//            holder.cbox_cart.setChecked(false);
-//        }
+        Picasso.get().load(model_gioHang.getAnhSP()).into(holder.img_cart);
+        holder.txt_cart_name.setText(model_gioHang.getTenSP());
+        holder.txt_cart_price.setText(String.valueOf(model_gioHang.getGiaSP()));
+        if (model_gioHang.getCheckBox() == 1){
+            holder.cbox_cart.setChecked(true);
+        }else {
+            holder.cbox_cart.setChecked(false);
+        }
 
-        tinhTien(holder);
+        holder.cbox_cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                model_gioHang.getMaGH();
+                if (holder.cbox_cart.isChecked()){
+                    model_gioHang.setCheckBox(1);
+                    table_gioHang.update(model_gioHang);
+                    notifyDataSetChanged();
+                }else {
+                    model_gioHang.setCheckBox(0);
+                    table_gioHang.update(model_gioHang);
+                    notifyDataSetChanged();
+                }
+            }
+        });
+
+
+        holder.btn_delete_cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                model_gioHang.getMaGH();
+                if (table_gioHang.delete(model_gioHang)){
+                    Toast.makeText(context, "thanh cong", Toast.LENGTH_SHORT).show();
+                }
+                list.clear();
+                list = table_gioHang.getAll();
+                notifyDataSetChanged();
+            }
+        });
 
 
         holder.btn_total_cart.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +108,7 @@ public class RecyclerView_Cart extends RecyclerView.Adapter<RecyclerView_Cart.Ho
             public void onClick(View view) {
                 if (quantity >= 0){
                     quantity-= 1;
-                    tong -= sanPham.getGiaTienSP();
+                    tong -=model_gioHang.getGiaSP();
                     holder.txt_quantity_cart.setText(quantity + "");
                 } else if (quantity <= 0) {
                     quantity = 0;
@@ -77,6 +116,7 @@ public class RecyclerView_Cart extends RecyclerView.Adapter<RecyclerView_Cart.Ho
                 }
             }
         });
+
 
     }
 
@@ -105,19 +145,19 @@ public class RecyclerView_Cart extends RecyclerView.Adapter<RecyclerView_Cart.Ho
         }
     }
 
-    public int tinhTien(Holder_Cart holder){
-        holder.cbox_cart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (holder.cbox_cart.isChecked() == true){
-                    tong += sanPham.getGiaTienSP();
-                    Toast.makeText(context, String.valueOf(tong), Toast.LENGTH_SHORT).show();
-                } else if (holder.cbox_cart.isChecked() == false) {
-                    tong -= sanPham.getGiaTienSP();
-                    Toast.makeText(context, String.valueOf(tong), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        return tong;
-    }
+//    public int tinhTien(Holder_Cart holder){
+//        holder.cbox_cart.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (holder.cbox_cart.isChecked() == true){
+//                    tong += model_hoaDon.getGiaSP();
+//                    Toast.makeText(context, String.valueOf(tong), Toast.LENGTH_SHORT).show();
+//                } else if (holder.cbox_cart.isChecked() == false) {
+//                    tong -= model_hoaDon.getGiaSP();
+//                    Toast.makeText(context, String.valueOf(tong), Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+//        return tong;
+//    }
 }

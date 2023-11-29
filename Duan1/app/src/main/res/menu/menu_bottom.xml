@@ -7,6 +7,11 @@
         android:title=""/>
 
     <item
+        android:id="@+id/Cart"
+        android:icon="@drawable/cart"
+        android:title=""/>
+
+    <item
         android:id="@+id/Oder"
         android:icon="@drawable/oder"
         android:title=""/>

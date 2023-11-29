@@ -70,6 +70,40 @@ public class Table_SanPham {
             do {
                 Model_SanPham pham = new Model_SanPham();
                 int masp = c.getInt(0);
+                int matl = c.getInt(1);
+                String tensp = c.getString(3);
+                int giatien = c.getInt(4);
+                String img = c.getString(5);
+                String luotmua = c.getString(6);
+                String gioithieu = c.getString(7);
+                int tontai = c.getInt(8);
+
+                pham.setMaSP(masp);
+                pham.setMaTL(matl);
+                pham.setTenSP(tensp);
+                pham.setGiaTienSP(giatien);
+                pham.setAnhSP(img);
+                pham.setLuotMuaSP(Integer.parseInt(luotmua));
+                pham.setGioiThieuSP(gioithieu);
+                pham.setTonTai(tontai);
+
+                list.add(pham);
+            }while (c.moveToNext());
+        }
+        return list;
+    }
+
+    public List<Model_SanPham> getTheLoai(Model_SanPham pham){
+        List<Model_SanPham> list = new ArrayList<>();
+
+        String dieukien[] = new String[]{String.valueOf(pham.getMaTL())};
+        Cursor c = db.rawQuery("SELECT * FROM SANPHAM WHERE MATL = ?", dieukien);
+        c.moveToFirst();
+
+        if (c != null && c.getCount() > 0){
+            do {
+                pham = new Model_SanPham();
+                int masp = c.getInt(0);
                 String matl = c.getString(2);
                 String tensp = c.getString(3);
                 int giatien = c.getInt(4);
@@ -93,7 +127,38 @@ public class Table_SanPham {
         return list;
     }
 
+    public List<Model_SanPham> getMASP(Model_SanPham pham){
+        List<Model_SanPham> list = new ArrayList<>();
 
+        String dieukien[] = new String[]{String.valueOf(pham.getMaSP())};
+        Cursor c = db.rawQuery("SELECT * FROM SANPHAM WHERE MASP = ?", dieukien);
+        c.moveToFirst();
 
+        if (c != null && c.getCount() > 0){
+            do {
+                pham = new Model_SanPham();
+                int masp = c.getInt(0);
+                String matl = c.getString(2);
+                String tensp = c.getString(3);
+                int giatien = c.getInt(4);
+                String img = c.getString(5);
+                String luotmua = c.getString(6);
+                String gioithieu = c.getString(7);
+                int tontai = c.getInt(8);
+
+                pham.setMaSP(masp);
+                pham.setTenTL(matl);
+                pham.setTenSP(tensp);
+                pham.setGiaTienSP(giatien);
+                pham.setAnhSP(img);
+                pham.setLuotMuaSP(Integer.parseInt(luotmua));
+                pham.setGioiThieuSP(gioithieu);
+                pham.setTonTai(tontai);
+
+                list.add(pham);
+            }while (c.moveToNext());
+        }
+        return list;
+    }
 
 }

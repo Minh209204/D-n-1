@@ -34,7 +34,7 @@ public class RecyclerView_DSSanpham extends RecyclerView.Adapter<RecyclerView_DS
 
     Context context;
     List<Model_SanPham> list;
-    Model_SanPham model_sanPham;
+
     Table_SanPham table_sanPham;
     Adapter_TheLoai adapter_theLoai;
     Table_TheLoai table_theLoai;
@@ -56,8 +56,8 @@ public class RecyclerView_DSSanpham extends RecyclerView.Adapter<RecyclerView_DS
 
     @Override
     public void onBindViewHolder(@NonNull Holder_DSSanPham holder, int position) {
+        Model_SanPham model_sanPham = list.get(position);
         table_sanPham = new Table_SanPham(context);
-        model_sanPham = list.get(position);
 
         String img = model_sanPham.getAnhSP();
 
@@ -65,9 +65,12 @@ public class RecyclerView_DSSanpham extends RecyclerView.Adapter<RecyclerView_DS
         holder.txt_create_name.setText(model_sanPham.getTenSP());
         holder.txt_create_price.setText(model_sanPham.getGiaTienSP() + "");
 
+
         holder.btn_create_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                model_sanPham.getMaSP();
+                model_sanPham.getMaTL();
                 dialogEdit(model_sanPham);
             }
         });
@@ -75,8 +78,11 @@ public class RecyclerView_DSSanpham extends RecyclerView.Adapter<RecyclerView_DS
         holder.btn_create_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                model_sanPham.getMaSP();
-                table_sanPham.delete(model_sanPham);
+                if (table_sanPham.delete(model_sanPham)){
+                    list.clear();
+                    list = table_sanPham.getAll();
+                    notifyDataSetChanged();
+                }
             }
         });
     }
@@ -116,8 +122,6 @@ public class RecyclerView_DSSanpham extends RecyclerView.Adapter<RecyclerView_DS
         edt_edit_name.setText(model_sanPham.getTenSP());
         edt_edit_price.setText(model_sanPham.getGiaTienSP() + "");
         edt_edit_anh.setText(model_sanPham.getAnhSP());
-        edit_spinner.setSelection(model_sanPham.getMaTL());
-        Log.d("TAG", "dialogEdit: " + model_sanPham.getMaTL());
         edt_edit_gioithieu.setText(model_sanPham.getGioiThieuSP());
 
         table_theLoai = new Table_TheLoai(context);
@@ -125,6 +129,8 @@ public class RecyclerView_DSSanpham extends RecyclerView.Adapter<RecyclerView_DS
 
         adapter_theLoai = new Adapter_TheLoai(listTL, context);
         edit_spinner.setAdapter(adapter_theLoai);
+
+        edit_spinner.setSelection(listTL.get(model_sanPham.getMaTL()).getMaTL());
 
         edit_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -134,13 +140,12 @@ public class RecyclerView_DSSanpham extends RecyclerView.Adapter<RecyclerView_DS
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
-
         btn_edit_create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                model_sanPham.getMaSP();
                 String name = edt_edit_name.getText().toString();
                 String price = edt_edit_price.getText().toString();
                 String theloai = listTL.get(index).getTenTL();
@@ -149,6 +154,7 @@ public class RecyclerView_DSSanpham extends RecyclerView.Adapter<RecyclerView_DS
 
                 model_sanPham.setTenSP(name);
                 model_sanPham.setTenTL(theloai);
+                model_sanPham.setMaTL(index);
                 model_sanPham.setGiaTienSP(Integer.parseInt(price));
                 model_sanPham.setAnhSP(anh);
                 model_sanPham.setGioiThieuSP(gioithieu);
@@ -156,10 +162,11 @@ public class RecyclerView_DSSanpham extends RecyclerView.Adapter<RecyclerView_DS
 
                 if (table_sanPham.update(model_sanPham)){
                     Toast.makeText(context, "Sửa thông tin thành công", Toast.LENGTH_SHORT).show();
-                    dialog.dismiss();
+                    notifyDataSetChanged();
                 }else {
                     Toast.makeText(context, "Sửa thông tin Thất bại", Toast.LENGTH_SHORT).show();
                 }
+                dialog.dismiss();
             }
         });
         dialog.show();

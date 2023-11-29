@@ -36,7 +36,7 @@ public class Fragment_Oder extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         recyclerView = view.findViewById(R.id.recyclerView);
-        giaTien = view.findViewById(R.id.giaTien);
+//        giaTien = view.findViewById(R.id.giaTien);
         table_sanPham = new Table_SanPham(getContext());
 
 //        List<SanPham> list = table_sanPham.getAll();

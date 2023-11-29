@@ -75,7 +75,10 @@ public class Login extends AppCompatActivity {
                 }
 
                 if (table_taiKhoan.checkAccount(khoan)){
-                    startActivity(new Intent(Login.this, Main.class));
+                    Intent intent = new Intent(Login.this, Main.class);
+                    intent.putExtra("taikhoan", account);
+                    intent.putExtra("matkhau", password);
+                    startActivity(intent);
                 }
             }
         });

@@ -55,7 +55,6 @@ public class DanhSachSanPham extends AppCompatActivity {
                 startActivity(new Intent(DanhSachSanPham.this, Create_Product.class));
             }
         });
-
     }
 
     @Override

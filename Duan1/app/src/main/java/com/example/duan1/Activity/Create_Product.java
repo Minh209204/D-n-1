@@ -55,7 +55,6 @@ public class Create_Product extends AppCompatActivity {
 
         setSupportActionBar(toolbar_createSP);
         getSupportActionBar().setTitle("Tạo sản phẩm");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         List<Model_TheLoai> list = table_theLoai.getAll();
 
@@ -102,14 +101,5 @@ public class Create_Product extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        if (id == android.R.id.home){
-            onBackPressed();
-        }
-        return super.onOptionsItemSelected(item);
     }
 }

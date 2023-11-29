@@ -9,8 +9,7 @@
         android:id="@+id/img_create_product"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:scaleType="centerCrop"
         android:src="@drawable/hamburge"/>
 
     <LinearLayout
@@ -31,8 +30,9 @@
             android:id="@+id/txt_create_price"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:gravity="bottom"
             android:text="20.000"
-            android:textSize="20dp"/>
+            android:textSize="17dp"/>
     </LinearLayout>
 
     <LinearLayout
