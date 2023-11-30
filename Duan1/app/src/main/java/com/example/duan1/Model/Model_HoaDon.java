@@ -1,11 +1,13 @@
 package com.example.duan1.Model;
 
 public class Model_HoaDon {
-    private int MaHD, MaKH, MaSP;
+    private int MaHD, MaGH, MaKH, MaSP;
     private String TenKH, DiaChiKH, AnhSP, TenSP;
     private int SDT, SoLuongSP, GiaSP, TongTien;
 
-    public Model_HoaDon(int maKH, int maSP, String tenKH, String diaChiKH, String anhSP, String tenSP, int SDT, int soLuongSP, int giaSP, int tongTien) {
+    public Model_HoaDon(int maHD, int maGH, int maKH, int maSP, String tenKH, String diaChiKH, String anhSP, String tenSP, int SDT, int soLuongSP, int giaSP, int tongTien) {
+        MaHD = maHD;
+        MaGH = maGH;
         MaKH = maKH;
         MaSP = maSP;
         TenKH = tenKH;
@@ -16,6 +18,14 @@ public class Model_HoaDon {
         SoLuongSP = soLuongSP;
         GiaSP = giaSP;
         TongTien = tongTien;
+    }
+
+    public int getMaGH() {
+        return MaGH;
+    }
+
+    public void setMaGH(int maGH) {
+        MaGH = maGH;
     }
 
     public int getGiaSP() {

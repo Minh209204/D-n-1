@@ -14,10 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.duan1.Database.Table_GioHang;
-import com.example.duan1.Database.Table_HoaDon;
 import com.example.duan1.Database.Table_SanPham;
 import com.example.duan1.Model.Model_GioHang;
-import com.example.duan1.Model.Model_HoaDon;
 import com.example.duan1.Model.Model_SanPham;
 import com.example.duan1.R;
 import com.squareup.picasso.Picasso;

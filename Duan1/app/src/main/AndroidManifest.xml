@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -15,7 +15,7 @@
         android:theme="@style/Theme.Duan1"
         tools:targetApi="31">
         <activity
-            android:name=".Activity.ThongTinKH"
+            android:name=".Activity.ThongTinCaNhan"
             android:exported="false" />
         <activity
             android:name=".Activity.DanhSachKhachHang"
@@ -35,11 +35,7 @@
         <activity
             android:name=".Activity.Main"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Activity.Register"
@@ -47,7 +43,11 @@
         <activity
             android:name=".Activity.Login"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

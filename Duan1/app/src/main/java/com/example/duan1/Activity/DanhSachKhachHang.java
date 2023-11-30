@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.duan1.Database.Table_TaiKhoan;
-import com.example.duan1.Model.Model_TaiKhoan;
+import com.example.duan1.Database.Table_KhachHang;
+import com.example.duan1.Model.Model_KhachHang;
 import com.example.duan1.R;
 import com.example.duan1.RecyclerView.RecyclerView_DSKhachHang;
 
@@ -21,7 +21,7 @@ public class DanhSachKhachHang extends AppCompatActivity {
     Toolbar toolbar_khachhang;
     RecyclerView rcy_qlkhachhang;
     RecyclerView_DSKhachHang recyclerView_dsKhachHang;
-    Table_TaiKhoan table_taiKhoan;
+    Table_KhachHang table_taiKhoan;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,13 +29,13 @@ public class DanhSachKhachHang extends AppCompatActivity {
 
         toolbar_khachhang = findViewById(R.id.toolbar_khachhang);
         rcy_qlkhachhang = findViewById(R.id.rcy_qlkhachhang);
-        table_taiKhoan = new Table_TaiKhoan(DanhSachKhachHang.this);
+        table_taiKhoan = new Table_KhachHang(DanhSachKhachHang.this);
 
         setSupportActionBar(toolbar_khachhang);
         getSupportActionBar().setTitle("Danh sách khách hàng");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        List<Model_TaiKhoan> list = table_taiKhoan.getAll();
+        List<Model_KhachHang> list = table_taiKhoan.getAll();
 
         recyclerView_dsKhachHang = new RecyclerView_DSKhachHang(DanhSachKhachHang.this, list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(DanhSachKhachHang.this, LinearLayoutManager.VERTICAL, false);

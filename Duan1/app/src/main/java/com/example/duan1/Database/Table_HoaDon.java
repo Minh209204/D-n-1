@@ -75,18 +75,20 @@ public class Table_HoaDon {
             do {
                 Model_HoaDon hoaDon = new Model_HoaDon();
                 int mahd = c.getInt(0);
-                int makh = c.getInt(1);
-                int masp = c.getInt(2);
-                String tenkh = c.getString(3);
-                int sdt = c.getInt(4);
-                String anhsp = c.getString(5);
-                String tensp = c.getString(6);
-                int giasp = c.getInt(7);
-                int soluong = c.getInt(8);
-                int tongtien = c.getInt(9);
-                String diachi = c.getString(10);
+                int magh = c.getInt(1);
+                int makh = c.getInt(2);
+                int masp = c.getInt(3);
+                String tenkh = c.getString(4);
+                int sdt = c.getInt(5);
+                String anhsp = c.getString(6);
+                String tensp = c.getString(7);
+                int giasp = c.getInt(8);
+                int soluong = c.getInt(9);
+                int tongtien = c.getInt(10);
+                String diachi = c.getString(11);
 
                 hoaDon.setMaHD(mahd);
+                hoaDon.setMaGH(magh);
                 hoaDon.setMaSP(masp);
                 hoaDon.setMaKH(makh);
                 hoaDon.setTenKH(tenkh);

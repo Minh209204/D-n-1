@@ -34,7 +34,7 @@ public class RecyclerView_Cart extends RecyclerView.Adapter<RecyclerView_Cart.Ho
     private Context context;
     private List<Model_GioHang> list;
     private Table_GioHang table_gioHang;
-    int tong = 0, quantity = 1;
+    int tong = 0;
 
     public RecyclerView_Cart(Context context, List<Model_GioHang> list) {
         this.context = context;
@@ -56,14 +56,25 @@ public class RecyclerView_Cart extends RecyclerView.Adapter<RecyclerView_Cart.Ho
         Model_GioHang model_gioHang = list.get(position);
         table_gioHang = new Table_GioHang(context);
 
-        Picasso.get().load(model_gioHang.getAnhSP()).into(holder.img_cart);
-        holder.txt_cart_name.setText(model_gioHang.getTenSP());
-        holder.txt_cart_price.setText(String.valueOf(model_gioHang.getGiaSP()));
         if (model_gioHang.getCheckBox() == 1){
             holder.cbox_cart.setChecked(true);
         }else {
             holder.cbox_cart.setChecked(false);
         }
+        Picasso.get().load(model_gioHang.getAnhSP()).into(holder.img_cart);
+        holder.txt_cart_name.setText(model_gioHang.getTenSP());
+        holder.txt_cart_price.setText(String.valueOf(model_gioHang.getGiaSP()));
+        holder.txt_quantity_cart.setText(model_gioHang.getSoLuongSP()+"");
+        if (model_gioHang.getSoLuongSP() == 0){
+            holder.txt_quantity_cart.setText("1");
+        }
+
+        holder.btn_total_cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         holder.cbox_cart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,9 +97,7 @@ public class RecyclerView_Cart extends RecyclerView.Adapter<RecyclerView_Cart.Ho
             @Override
             public void onClick(View view) {
                 model_gioHang.getMaGH();
-                if (table_gioHang.delete(model_gioHang)){
-                    Toast.makeText(context, "thanh cong", Toast.LENGTH_SHORT).show();
-                }
+                table_gioHang.delete(model_gioHang);
                 list.clear();
                 list = table_gioHang.getAll();
                 notifyDataSetChanged();
@@ -99,20 +108,31 @@ public class RecyclerView_Cart extends RecyclerView.Adapter<RecyclerView_Cart.Ho
         holder.btn_total_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int quantity = model_gioHang.getSoLuongSP();
                 holder.txt_quantity_cart.setText(++quantity + "");
+                model_gioHang.setSoLuongSP(quantity);
+                table_gioHang.update(model_gioHang);
+                notifyDataSetChanged();
             }
         });
 
         holder.btn_reduce_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (quantity >= 0){
+                int quantity = model_gioHang.getSoLuongSP();
+
+                if (quantity > 1){
                     quantity-= 1;
-                    tong -=model_gioHang.getGiaSP();
+//                    tong -= model_gioHang.getGiaSP();
                     holder.txt_quantity_cart.setText(quantity + "");
+                    model_gioHang.setSoLuongSP(quantity);
+                    table_gioHang.update(model_gioHang);
+                    notifyDataSetChanged();
                 } else if (quantity <= 0) {
                     quantity = 0;
                     holder.txt_quantity_cart.setText(quantity + "");
+                    model_gioHang.setSoLuongSP(quantity);
+                    table_gioHang.update(model_gioHang);
                 }
             }
         });

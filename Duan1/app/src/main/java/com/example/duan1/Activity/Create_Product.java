@@ -1,13 +1,10 @@
 package com.example.duan1.Activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -27,9 +24,9 @@ import java.util.List;
 public class Create_Product extends AppCompatActivity {
     Adapter_TheLoai adapter_theLoai;
     Table_TheLoai table_theLoai;
-    Model_TheLoai model_theLoai;
     Table_SanPham table_sanPham;
     Model_SanPham model_sanPham;
+    Model_TheLoai model_theLoai;
     Spinner spinner;
     Toolbar toolbar_createSP;
     EditText edt_name, edt_price, edt_anh, edt_gioithieu;

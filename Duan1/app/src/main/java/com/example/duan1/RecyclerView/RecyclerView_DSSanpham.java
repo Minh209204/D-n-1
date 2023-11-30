@@ -1,8 +1,6 @@
 package com.example.duan1.RecyclerView;
 
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.duan1.Activity.Create_Product;
-import com.example.duan1.Activity.DanhSachSanPham;
 import com.example.duan1.DataHelper.Adapter_TheLoai;
 import com.example.duan1.Database.Table_SanPham;
 import com.example.duan1.Database.Table_TheLoai;

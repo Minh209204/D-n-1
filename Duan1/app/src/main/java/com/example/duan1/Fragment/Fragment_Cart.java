@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,10 +33,7 @@ public class Fragment_Cart extends Fragment {
     RecyclerView_Cart recyclerView_cart;
     RecyclerView recyclerView;
     TextView txt_tongTien;
-    Toolbar toolbar;
-    int tong;
-
-
+    LinearLayout layout_cart;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -49,11 +47,7 @@ public class Fragment_Cart extends Fragment {
 
         recyclerView = view.findViewById(R.id.recyclerView);
         txt_tongTien = view.findViewById(R.id.txt_tongTien);
-        toolbar = view.findViewById(R.id.toolbar_cart);
-
-        AppCompatActivity activity = (AppCompatActivity) getActivity();
-        activity.setSupportActionBar(toolbar);
-        activity.getSupportActionBar().setTitle("Giỏ hàng");
+        layout_cart = view.findViewById(R.id.layout_cart);
 
         table_hoaDon = new Table_GioHang(getContext());
         list = table_hoaDon.getAll();
@@ -69,19 +63,23 @@ public class Fragment_Cart extends Fragment {
         int tong = 0;
         list = table_hoaDon.getSanPham(model_gioHang);
         for (int i=0; i<list.size(); i++){
-            tong+= list.get(i).getGiaSP();
+            int soLuong = list.get(i).getSoLuongSP();
+            int giaSanPham = list.get(i).getGiaSP();
+            tong+= giaSanPham * soLuong;
         }
         txt_tongTien.setText(tong +"");
 
-        txt_tongTien.setOnClickListener(new View.OnClickListener() {
+        layout_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int tong = 0;
                 list = table_hoaDon.getSanPham(model_gioHang);
                 for (int i=0; i<list.size(); i++){
-                    tong+= list.get(i).getGiaSP();
+                    int soLuong = list.get(i).getSoLuongSP();
+                    int giaSanPham = list.get(i).getGiaSP();
+                    tong+= giaSanPham * soLuong;
                 }
-                Toast.makeText(activity, tong + "", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), tong + "", Toast.LENGTH_SHORT).show();
                 txt_tongTien.setText(tong +"");
             }
         });

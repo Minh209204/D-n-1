@@ -11,8 +11,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.duan1.Database.Table_TaiKhoan;
-import com.example.duan1.Model.Model_TaiKhoan;
+import com.example.duan1.Database.Table_KhachHang;
+import com.example.duan1.Model.Model_KhachHang;
 import com.example.duan1.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -24,15 +24,16 @@ public class Login extends AppCompatActivity {
     Button btn_SignUp;
     ImageButton btn_img_facebook, btn_img_google, btn_img_gmail;
     TextView txt_createAccount;
-    Model_TaiKhoan khoan;
-    Table_TaiKhoan table_taiKhoan;
+    Model_KhachHang khoan;
+    Table_KhachHang table_khachHang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        table_taiKhoan = new Table_TaiKhoan(this);
-        khoan = new Model_TaiKhoan();
+
+        table_khachHang = new Table_KhachHang(this);
+        khoan = new Model_KhachHang();
 
         error_login_account = findViewById(R.id.error_login_account);
         error_login_password = findViewById(R.id.error_login_password);
@@ -64,7 +65,7 @@ public class Login extends AppCompatActivity {
 //                check pass
                 if (edt_login_password.length() == 0){
                     error_login_password.setError("Không để trống ô nhập");
-                }else if (table_taiKhoan.checkAccount(khoan) == false){
+                }else if (table_khachHang.checkAccount(khoan) == false){
                     error_login_password.setError("Sai mật khẩu");
                 }else {
                     error_login_password.setError("");
@@ -74,7 +75,7 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(Login.this, "Đã lưu đăng nhập", Toast.LENGTH_SHORT).show();
                 }
 
-                if (table_taiKhoan.checkAccount(khoan)){
+                if (table_khachHang.checkAccount(khoan)){
                     Intent intent = new Intent(Login.this, Main.class);
                     intent.putExtra("taikhoan", account);
                     intent.putExtra("matkhau", password);

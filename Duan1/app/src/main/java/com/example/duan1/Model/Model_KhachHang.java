@@ -2,15 +2,33 @@ package com.example.duan1.Model;
 
 public class Model_KhachHang {
 
-    private int MaKH, MaTK;
-    private String AnhKH, TenKH, SDTKH, DiaChiKH;
+    private int MaKH;
+    private String TaiKhoan, MatKhau, AnhKH, TenKH, SDTKH, DiaChiKH;
 
-    public Model_KhachHang(int maTK, String anhKH, String tenKH, String SDTKH, String diaChiKH) {
-        MaTK = maTK;
+    public Model_KhachHang(String anhKH, String tenKH, String SDTKH, String diaChiKH) {
         AnhKH = anhKH;
         TenKH = tenKH;
         this.SDTKH = SDTKH;
         DiaChiKH = diaChiKH;
+    }
+
+    public Model_KhachHang() {
+    }
+
+    public String getTaiKhoan() {
+        return TaiKhoan;
+    }
+
+    public void setTaiKhoan(String taiKhoan) {
+        TaiKhoan = taiKhoan;
+    }
+
+    public String getMatKhau() {
+        return MatKhau;
+    }
+
+    public void setMatKhau(String matKhau) {
+        MatKhau = matKhau;
     }
 
     public Model_KhachHang(int maKH) {
@@ -25,13 +43,6 @@ public class Model_KhachHang {
         MaKH = maKH;
     }
 
-    public int getMaTK() {
-        return MaTK;
-    }
-
-    public void setMaTK(int maTK) {
-        MaTK = maTK;
-    }
 
     public String getAnhKH() {
         return AnhKH;

@@ -4,37 +4,36 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.duan1.Database.Table_TaiKhoan;
-import com.example.duan1.Model.Model_TaiKhoan;
+import com.example.duan1.Database.Table_KhachHang;
+import com.example.duan1.Model.Model_KhachHang;
 import com.example.duan1.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Register extends AppCompatActivity {
-    TextInputLayout error_register_account, error_register_password, error_register_sdt;
-    TextInputEditText edt_register_account, edt_register_password, edt_register_sdt;
+    TextInputLayout error_register_name, error_register_account, error_register_password, error_register_sdt;
+    TextInputEditText edt_register_name, edt_register_account, edt_register_password, edt_register_sdt;
     Button btn_Register;
-    Table_TaiKhoan table_taiKhoan;
-    Model_TaiKhoan taiKhoan;
-    FirebaseFirestore firebaseFirestore;
+    Table_KhachHang table_khachHang;
+//    Model_KhachHang model_khachHang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        firebaseFirestore = FirebaseFirestore.getInstance();
-        table_taiKhoan = new Table_TaiKhoan(this);
-        taiKhoan = new Model_TaiKhoan();
+        table_khachHang = new Table_KhachHang(this);
 
+        error_register_name = findViewById(R.id.error_register_name);
         error_register_account = findViewById(R.id.error_register_account);
         error_register_password = findViewById(R.id.error_register_password);
         error_register_sdt = findViewById(R.id.error_register_sdt);
+        edt_register_name = findViewById(R.id.edt_register_name);
         edt_register_account = findViewById(R.id.edt_register_account);
         edt_register_password = findViewById(R.id.edt_register_password);
         edt_register_sdt = findViewById(R.id.edt_register_sdt);
@@ -43,13 +42,23 @@ public class Register extends AppCompatActivity {
         btn_Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Model_KhachHang model_khachHang = new Model_KhachHang();
+
+                String name = edt_register_name.getText().toString();
                 String account = edt_register_account.getText().toString();
                 String password = edt_register_password.getText().toString();
                 String sdt = edt_register_sdt.getText().toString();
 
-                taiKhoan.setTaiKhoan(account);
-                taiKhoan.setMatKhau(password);
-                taiKhoan.setSDT(sdt);
+                model_khachHang.setTenKH(name);
+                model_khachHang.setTaiKhoan(account);
+                model_khachHang.setMatKhau(password);
+                model_khachHang.setSDTKH(sdt);
+
+                if (edt_register_name.length() == 0){
+                    error_register_name.setError("Không để trống ô nhập");
+                }else {
+                    error_register_name.setError("");
+                }
 
                 if (edt_register_account.length() == 0){
                     error_register_account.setError("Không để trống ô nhập");
@@ -69,10 +78,11 @@ public class Register extends AppCompatActivity {
                     error_register_sdt.setError("");
                 }
 
-                if (table_taiKhoan.insert(taiKhoan) && edt_register_account.length() != 0 && edt_register_password.length() != 0 && edt_register_sdt.length() != 0){
+                if (table_khachHang.insert(model_khachHang) && edt_register_name.length() != 0 && edt_register_account.length() != 0 && edt_register_password.length() != 0 && edt_register_sdt.length() != 0){
                     startActivity(new Intent(Register.this, Login.class));
                 }else{
-                    Toast.makeText(Register.this, "sai roi", Toast.LENGTH_SHORT).show();
+                    Log.d("TAG", "onClick: " + table_khachHang.insert(model_khachHang) + "");
+                    Toast.makeText(Register.this, "Vui lòng đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                 }
             }
         });

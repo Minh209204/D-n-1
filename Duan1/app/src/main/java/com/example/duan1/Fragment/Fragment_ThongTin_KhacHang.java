@@ -14,6 +14,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.example.duan1.Activity.Login;
+import com.example.duan1.Activity.ThongTinCaNhan;
 import com.example.duan1.R;
 
 public class Fragment_ThongTin_KhacHang extends Fragment {
@@ -37,7 +38,7 @@ public class Fragment_ThongTin_KhacHang extends Fragment {
         thongtinKH.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(getActivity(), ThongTinCaNhan.class));
             }
         });
 

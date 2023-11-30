@@ -16,12 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.example.duan1.Activity.DanhSachKhachHang;
 import com.example.duan1.Activity.DanhSachSanPham;
 import com.example.duan1.Activity.Login;
-import com.example.duan1.Database.Table_TaiKhoan;
-import com.example.duan1.Model.Model_TaiKhoan;
 import com.example.duan1.R;
-import com.example.duan1.RecyclerView.RecyclerView_DSKhachHang;
-
-import java.util.List;
 
 public class Fragment_ThongTin_Admin extends Fragment {
 

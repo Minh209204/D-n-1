@@ -5,29 +5,22 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DataHelper extends SQLiteOpenHelper {
-    private static String name = "Duan01.db";
-    private static int version = 4 ;
+    private static String name = "Duan001.db";
+    private static int version = 1;
     public DataHelper(Context context){
         super(context, name, null, version);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String TAIKHOAN = "CREATE TABLE \"TAIKHOAN\" (\n" +
-                "\t\"MATK\"\tINTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
-                "\t\"TAIKHOAN\"\tTEXT,\n" +
-                "\t\"MATKHAU\"\tTEXT,\n" +
-                "\t\"SDT\"\tINTEGER\n" +
-                ");";
-
         String KHACHHANG = "CREATE TABLE \"KHACHHANG\" (\n" +
                 "\t\"MAKH\"\tINTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
-                "\t\"MATK\"\tINTEGER,\n" +
+                "\t\"TAIKHOAN\"\tTEXT,\n" +
+                "\t\"MATKHAU\"\tTEXT,\n" +
                 "\t\"TENKH\"\tTEXT,\n" +
                 "\t\"ANHKH\"\tTEXT,\n" +
                 "\t\"SDTKH\"\tINTEGER,\n" +
-                "\t\"DIACHIKH\"\tTEXT,\n" +
-                "\tFOREIGN KEY(\"MATK\") REFERENCES \"TAIKHOAN\"(\"MATK\")\n" +
+                "\t\"DIACHIKH\"\tTEXT\n" +
                 ");";
 
         String THELOAI = "CREATE TABLE \"THELOAI\" (\n" +
@@ -98,9 +91,7 @@ public class DataHelper extends SQLiteOpenHelper {
                 "(6,'Cake')," +
                 "(7,'Beer');";
 
-        db.execSQL(TAIKHOAN);
         db.execSQL(KHACHHANG);
-
         db.execSQL(THELOAI);
         db.execSQL(SANPHAM);
         db.execSQL(GIOHANG);

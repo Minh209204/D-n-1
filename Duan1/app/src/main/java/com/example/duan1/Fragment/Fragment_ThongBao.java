@@ -8,11 +8,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.duan1.R;
 
 public class Fragment_ThongBao extends Fragment {
-
+    RecyclerView recyclerView_thongbao;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -22,6 +23,9 @@ public class Fragment_ThongBao extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        recyclerView_thongbao = view.findViewById(R.id.recyclerView_thongbao);
+
+
+
     }
 }

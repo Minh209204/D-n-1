@@ -9,8 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.duan1.Database.Table_TaiKhoan;
-import com.example.duan1.Model.Model_TaiKhoan;
+import com.example.duan1.Database.Table_KhachHang;
+import com.example.duan1.Model.Model_KhachHang;
 import com.example.duan1.R;
 
 import java.util.List;
@@ -18,10 +18,10 @@ import java.util.List;
 public class RecyclerView_DSKhachHang extends RecyclerView.Adapter<RecyclerView_DSKhachHang.Holder_KhachHang>{
 
     Context context;
-    List<Model_TaiKhoan> list;
-    Table_TaiKhoan table_taiKhoan;
+    List<Model_KhachHang> list;
+    Table_KhachHang table_taiKhoan;
 
-    public RecyclerView_DSKhachHang(Context context, List<Model_TaiKhoan> list) {
+    public RecyclerView_DSKhachHang(Context context, List<Model_KhachHang> list) {
         this.context = context;
         this.list = list;
     }
@@ -38,12 +38,13 @@ public class RecyclerView_DSKhachHang extends RecyclerView.Adapter<RecyclerView_
 
     @Override
     public void onBindViewHolder(@NonNull Holder_KhachHang holder, int position) {
-        Model_TaiKhoan model_taiKhoan = list.get(position);
-        table_taiKhoan = new Table_TaiKhoan(context);
+        Model_KhachHang model_taiKhoan = list.get(position);
+        table_taiKhoan = new Table_KhachHang(context);
 
-        holder.txt_qlkh_name.setText(model_taiKhoan.getTaiKhoan());
+        holder.txt_qlkh_name.setText(model_taiKhoan.getTenKH());
+        holder.txt_qlkh_account.setText(model_taiKhoan.getTaiKhoan());
         holder.txt_qlkh_password.setText(model_taiKhoan.getMatKhau());
-        holder.txt_qlkh_sdt.setText(model_taiKhoan.getSDT());
+        holder.txt_qlkh_sdt.setText(model_taiKhoan.getSDTKH() + "");
 
     }
 
@@ -53,10 +54,11 @@ public class RecyclerView_DSKhachHang extends RecyclerView.Adapter<RecyclerView_
     }
 
     public class Holder_KhachHang extends RecyclerView.ViewHolder {
-        TextView txt_qlkh_name, txt_qlkh_password, txt_qlkh_sdt;
+        TextView txt_qlkh_name, txt_qlkh_account, txt_qlkh_password, txt_qlkh_sdt;
         public Holder_KhachHang(@NonNull View itemView) {
             super(itemView);
             txt_qlkh_name = itemView.findViewById(R.id.txt_qlkh_name);
+            txt_qlkh_account = itemView.findViewById(R.id.txt_qlkh_account);
             txt_qlkh_password = itemView.findViewById(R.id.txt_qlkh_password);
             txt_qlkh_sdt = itemView.findViewById(R.id.txt_qlkh_sdt);
         }
