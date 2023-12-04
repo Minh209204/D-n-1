@@ -1,9 +1,9 @@
 package com.example.duan1.Model;
 
 public class Model_GioHang {
-    private int MaGH, MaSP;
+    private int MaGH, MaSP, MaKH;
     private String TenSP, AnhSP;
-    private int GiaSP, CheckBox, SoLuongSP;
+    private int GiaSP, CheckBox, SoLuongSP, SoLuong;
 
     public Model_GioHang(int maSP, String tenSP, String anhSP, int giaSP, int checkBox, int soLuongSP) {
         MaSP = maSP;
@@ -12,6 +12,21 @@ public class Model_GioHang {
         GiaSP = giaSP;
         CheckBox = checkBox;
         SoLuongSP = soLuongSP;
+    }
+    public int getSoLuong() {
+        return SoLuong;
+    }
+
+    public void setSoLuong(int soLuong) {
+        SoLuong = soLuong;
+    }
+
+    public int getMaKH() {
+        return MaKH;
+    }
+
+    public void setMaKH(int maKH) {
+        MaKH = maKH;
     }
 
     public Model_GioHang() {

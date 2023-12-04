@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.ThongTinCaNhan"
+    android:padding="10dp"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
@@ -12,6 +13,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <ImageView
+        android:id="@+id/img_kh"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -19,16 +25,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tên người dùng: "
-            android:textSize="20dp"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:id="@+id/txt_name"
-            android:layout_width="260dp"
+            android:textSize="18dp"
+            android:text="Tên người dùng: "/>
+        <EditText
+            android:id="@+id/edt_name_kh"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tên tài khoản: "
-            android:textSize="20dp"/>
+            android:hint="Nhập tên"/>
     </LinearLayout>
 
     <LinearLayout
@@ -38,16 +41,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tên tài khoản: "
-            android:textSize="20dp"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:id="@+id/txt_account"
-            android:layout_width="260dp"
+            android:textSize="18dp"
+            android:text="Tài khoản: "/>
+        <EditText
+            android:id="@+id/edt_account_kh"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tên tài khoản: "
-            android:textSize="20dp"/>
+            android:hint="Nhập tài khoản"/>
     </LinearLayout>
 
     <LinearLayout
@@ -57,16 +57,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mật khẩu: "
-            android:textSize="20dp"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:id="@+id/txt_password"
-            android:layout_width="wrap_content"
+            android:textSize="18dp"
+            android:text="Mật khẩu: "/>
+        <EditText
+            android:id="@+id/edt_password_kh"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Mật khẩu: "
-            android:textSize="20dp"/>
+            android:hint="Nhập mật khẩu"/>
     </LinearLayout>
 
     <LinearLayout
@@ -76,16 +73,37 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Số điện thoại: "
-            android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:textSize="18dp"
+            android:text="Số điện thoại: "/>
+        <EditText
+            android:id="@+id/edt_sdt_kh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nhập số điện thoại"/>
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/txt_sdt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tên tài khoản: "
-            android:textSize="20dp"/>
+            android:textSize="18dp"
+            android:text="Tên địa chỉ: "/>
+        <EditText
+            android:id="@+id/edt_address_kh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Địa chỉ"/>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_hoanThanh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="Hoàn thành"/>
+
 
 </LinearLayout>

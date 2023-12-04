@@ -16,11 +16,12 @@ import androidx.fragment.app.Fragment;
 import com.example.duan1.Activity.DanhSachKhachHang;
 import com.example.duan1.Activity.DanhSachSanPham;
 import com.example.duan1.Activity.Login;
+import com.example.duan1.Activity.ThongKe;
 import com.example.duan1.R;
 
 public class Fragment_ThongTin_Admin extends Fragment {
 
-    TextView thongtinAmin, qlsanpham, qlkhachhang, dangxuat;
+    TextView thongke, qlsanpham, qlkhachhang, dangxuat;
 
     @Nullable
     @Override
@@ -31,10 +32,16 @@ public class Fragment_ThongTin_Admin extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        thongtinAmin = view.findViewById(R.id.thongtinAdmin);
+        thongke = view.findViewById(R.id.thongke);
         qlsanpham = view.findViewById(R.id.qlsanpham);
         qlkhachhang = view.findViewById(R.id.qlkhachhang);
         dangxuat = view.findViewById(R.id.dangxuat);
+        thongke.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), ThongKe.class));
+            }
+        });
 
         qlsanpham.setOnClickListener(new View.OnClickListener() {
             @Override

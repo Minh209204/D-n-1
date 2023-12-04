@@ -2,7 +2,9 @@ package com.example.duan1.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -49,12 +51,11 @@ public class Login extends AppCompatActivity {
         btn_SignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String account = edt_login_account.getText().toString();
-                String password = edt_login_password.getText().toString();
+                String taikhoan = edt_login_account.getText().toString();
+                String matkhau = edt_login_password.getText().toString();
 
-                khoan.setTaiKhoan(account);
-                khoan.setMatKhau(password);
-
+                khoan.setTaiKhoan(taikhoan);
+                khoan.setMatKhau(matkhau);
 //                check account
                 if (edt_login_account.length() == 0){
                     error_login_account.setError("Không để trống ô nhập");
@@ -76,10 +77,20 @@ public class Login extends AppCompatActivity {
                 }
 
                 if (table_khachHang.checkAccount(khoan)){
-                    Intent intent = new Intent(Login.this, Main.class);
-                    intent.putExtra("taikhoan", account);
-                    intent.putExtra("matkhau", password);
-                    startActivity(intent);
+                    SharedPreferences sharedPreferences = getSharedPreferences("account", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    if (editor != null){
+                        editor.clear();
+                        editor.putString("taikhoan", taikhoan);
+                        editor.putString("matkhau", matkhau);
+                        editor.apply();
+                    }else {
+                        editor.clear();
+                        editor.putString("taikhoan", taikhoan);
+                        editor.putString("matkhau", matkhau);
+                        editor.apply();
+                    }
+                    startActivity(new Intent(Login.this, Main.class));
                 }
             }
         });

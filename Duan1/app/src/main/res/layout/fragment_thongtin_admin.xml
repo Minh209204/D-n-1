@@ -11,11 +11,11 @@
         android:src="@drawable/img_logo"/>
 
     <TextView
-        android:id="@+id/thongtinAdmin"
+        android:id="@+id/thongke"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="25dp"
-        android:text="Thông tin cá nhân"/>
+        android:text="Thống kê"/>
 
     <TextView
         android:id="@+id/qlkhachhang"

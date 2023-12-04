@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -50,6 +51,7 @@ public class Fragment_HomePage extends Fragment {
 
         list = table_sanPham.getAll();
         Collections.shuffle(list);
+
         funcion_recyclerView_horizontal(list);
         funcion_recyclerView_vertical(list);
 

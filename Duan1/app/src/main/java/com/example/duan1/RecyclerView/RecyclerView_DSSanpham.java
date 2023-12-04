@@ -74,6 +74,7 @@ public class RecyclerView_DSSanpham extends RecyclerView.Adapter<RecyclerView_DS
         holder.btn_create_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                model_sanPham.getMaSP();
                 if (table_sanPham.delete(model_sanPham)){
                     list.clear();
                     list = table_sanPham.getAll();
@@ -147,14 +148,15 @@ public class RecyclerView_DSSanpham extends RecyclerView.Adapter<RecyclerView_DS
                 String theloai = listTL.get(index).getTenTL();
                 String anh = edt_edit_anh.getText().toString();
                 String gioithieu = edt_edit_gioithieu.getText().toString();
-
+//                String soluong = ed
+//                model_sanPham.setSoLuong(Integer.parseInt(soluong));
                 model_sanPham.setTenSP(name);
                 model_sanPham.setTenTL(theloai);
                 model_sanPham.setMaTL(index);
                 model_sanPham.setGiaTienSP(Integer.parseInt(price));
                 model_sanPham.setAnhSP(anh);
                 model_sanPham.setGioiThieuSP(gioithieu);
-                model_sanPham.setTonTai(1);
+                model_sanPham.setSoLuong(10);
 
                 if (table_sanPham.update(model_sanPham)){
                     Toast.makeText(context, "Sửa thông tin thành công", Toast.LENGTH_SHORT).show();

@@ -37,35 +37,38 @@ public class DataHelper extends SQLiteOpenHelper {
                 "\t\"ANHSP\"\tTEXT,\n" +
                 "\t\"LUOTMUASP\"\tINTEGER,\n" +
                 "\t\"GIOITHIEUSP\"\tTEXT,\n" +
-                "\t\"TONTAI\"\tINTEGER,\n" +
+                "\t\"SOLUONGSP\"\tINTEGER,\n" +
                 "\tFOREIGN KEY(\"MATL\") REFERENCES \"THELOAI\"(\"MATL\")\n" +
                 ");";
 
         String GIOHANG = "CREATE TABLE \"GIOHANG\" (\n" +
                 "\t\"MAGH\"\tINTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
+                "\t\"MAKH\"\tINTEGER,\n" +
                 "\t\"MASP\"\tINTEGER,\n" +
                 "\t\"TENSP\"\tTEXT,\n" +
                 "\t\"ANHSP\"\tTEXT,\n" +
                 "\t\"GIASP\"\tINTEGER,\n" +
                 "\t\"CHECKBOX\"\tINTEGER,\n" +
                 "\t\"SOLUONGSP\"\tINTEGER,\n" +
+                "\t\"SOLUONG\"\tINTEGER,\n" +
+                "\tFOREIGN KEY(\"MAKH\") REFERENCES \"KHACHHANG\"(\"MAKH\"),\n" +
                 "\tFOREIGN KEY(\"MASP\") REFERENCES \"SANPHAM\"(\"MASP\")\n" +
                 ");";
 
-        String HOADON = "CREATE TABLE \"HOADON\" (\n" +
-                "\t\"MAHD\"\tINTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
+        String DONHANG = "CREATE TABLE \"DONHANG\" (\n" +
+                "\t\"MADH\"\tINTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
                 "\t\"MAGH\"\tINTEGER,\n" +
-                "\t\"MAKH\"\tINTEGER,\n" +
                 "\t\"MASP\"\tINTEGER,\n" +
+                "\t\"MAKH\"\tINTEGER,\n" +
                 "\t\"TENKH\"\tTEXT,\n" +
-                "\t\"SDTKH\"\tINTEGER,\n" +
+                "\t\"SDTKH\"\tTEXT,\n" +
                 "\t\"ANHSP\"\tTEXT,\n" +
-                "\t\"TENSP\"\tTEXT,\n" +
-                "\t\"GIASP\"\tTEXT,\n" +
-                "\t\"SOLUONGSP\"\tINTEGER,\n" +
+                "\t\"TENSP\"\tINTEGER,\n" +
+                "\t\"GIASP\"\tINTEGER,\n" +
+                "\t\"SOLUONG\"\tINTEGER,\n" +
                 "\t\"TONGTIEN\"\tINTEGER,\n" +
                 "\t\"DIACHIKH\"\tTEXT,\n" +
-                "\tFOREIGN KEY(\"MAKH\") REFERENCES \"KHACHHANG\"(\"MAKH\"),\n" +
+                "\t\"TRANGTHAI\"\tTEXT,\n" +
                 "\tFOREIGN KEY(\"MAGH\") REFERENCES \"GIOHANG\"(\"MAGH\")\n" +
                 ");";
 
@@ -95,7 +98,7 @@ public class DataHelper extends SQLiteOpenHelper {
         db.execSQL(THELOAI);
         db.execSQL(SANPHAM);
         db.execSQL(GIOHANG);
-        db.execSQL(HOADON);
+        db.execSQL(DONHANG);
         db.execSQL(THONGKE);
         db.execSQL(data_theloai);
     }

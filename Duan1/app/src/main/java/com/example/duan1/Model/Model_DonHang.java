@@ -1,12 +1,12 @@
 package com.example.duan1.Model;
 
-public class Model_HoaDon {
-    private int MaHD, MaGH, MaKH, MaSP;
-    private String TenKH, DiaChiKH, AnhSP, TenSP;
+public class Model_DonHang {
+    private int MaDH, MaGH, MaKH, MaSP;
+    private String TenKH, DiaChiKH, AnhSP, TenSP, TrangThai;
     private int SDT, SoLuongSP, GiaSP, TongTien;
 
-    public Model_HoaDon(int maHD, int maGH, int maKH, int maSP, String tenKH, String diaChiKH, String anhSP, String tenSP, int SDT, int soLuongSP, int giaSP, int tongTien) {
-        MaHD = maHD;
+    public Model_DonHang(int maDH, int maGH, int maKH, int maSP, String tenKH, String diaChiKH, String anhSP, String tenSP, String trangThai, int SDT, int soLuongSP, int giaSP, int tongTien) {
+        MaDH = maDH;
         MaGH = maGH;
         MaKH = maKH;
         MaSP = maSP;
@@ -14,10 +14,19 @@ public class Model_HoaDon {
         DiaChiKH = diaChiKH;
         AnhSP = anhSP;
         TenSP = tenSP;
+        TrangThai = trangThai;
         this.SDT = SDT;
         SoLuongSP = soLuongSP;
         GiaSP = giaSP;
         TongTien = tongTien;
+    }
+
+    public String getTrangThai() {
+        return TrangThai;
+    }
+
+    public void setTrangThai(String trangThai) {
+        TrangThai = trangThai;
     }
 
     public int getMaGH() {
@@ -36,7 +45,7 @@ public class Model_HoaDon {
         GiaSP = giaSP;
     }
 
-    public Model_HoaDon() {
+    public Model_DonHang() {
     }
 
     public String getAnhSP() {
@@ -56,13 +65,12 @@ public class Model_HoaDon {
     }
 
 
-
-    public int getMaHD() {
-        return MaHD;
+    public int getMaDH() {
+        return MaDH;
     }
 
-    public void setMaHD(int maHD) {
-        MaHD = maHD;
+    public void setMaDH(int maDH) {
+        MaDH = maDH;
     }
 
     public int getMaKH() {

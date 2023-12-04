@@ -4,16 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
-import android.content.Intent;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.example.duan1.Database.Table_KhachHang;
 import com.example.duan1.Fragment.Fragment_Cart;
 import com.example.duan1.Fragment.Fragment_HomePage;
-import com.example.duan1.Fragment.Fragment_Oder;
+import com.example.duan1.Fragment.Fragment_Oder_Admin;
+import com.example.duan1.Fragment.Fragment_Oder_KhachHang;
 import com.example.duan1.Fragment.Fragment_ThongBao;
 import com.example.duan1.Fragment.Fragment_ThongTin_Admin;
 import com.example.duan1.Fragment.Fragment_ThongTin_KhacHang;
@@ -27,10 +28,11 @@ public class Main extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     FragmentManager fm;
     Fragment_HomePage fragment_homePage;
-    Fragment_Oder fragment_oder;
+    Fragment_Oder_KhachHang fragment_oder_khachHang;
     Fragment_ThongBao fragment_thongBao;
     Fragment_ThongTin_Admin fragment_thongTin_admin;
     Fragment_ThongTin_KhacHang fragment_thongTin_khacHang;
+    Fragment_Oder_Admin fragment_oder_admin;
     Fragment_Cart fragment_cart;
     Table_KhachHang table_khachHang;
     Model_KhachHang model_khachHang;
@@ -44,10 +46,11 @@ public class Main extends AppCompatActivity {
         model_khachHang = new Model_KhachHang();
 
         fragment_homePage = new Fragment_HomePage();
-        fragment_oder = new Fragment_Oder();
+        fragment_oder_khachHang = new Fragment_Oder_KhachHang();
         fragment_thongBao = new Fragment_ThongBao();
         fragment_thongTin_admin = new Fragment_ThongTin_Admin();
         fragment_thongTin_khacHang = new Fragment_ThongTin_KhacHang();
+        fragment_oder_admin = new Fragment_Oder_Admin();
         fragment_cart = new Fragment_Cart();
 
         frameLayout = findViewById(R.id.frameLayout);
@@ -67,16 +70,19 @@ public class Main extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Intent intent = getIntent();
-                String taikhoan = intent.getStringExtra("taikhoan").toString();
-                String matkhau = intent.getStringExtra("matkhau").toString();
+                SharedPreferences sharedPreferences = getSharedPreferences("account", Context.MODE_PRIVATE);
+
+                String taikhoan = sharedPreferences.getString("taikhoan", "");
+                String matkhau =sharedPreferences.getString("matkhau", "");
 
                 if (item.getItemId() == R.id.HomePage){
                     fm.beginTransaction().replace(R.id.frameLayout, fragment_homePage).commit();
                 }else if (item.getItemId() == R.id.Cart){
                     fm.beginTransaction().replace(R.id.frameLayout, fragment_cart).commit();
-                }else if (item.getItemId() == R.id.Oder){
-                    fm.beginTransaction().replace(R.id.frameLayout, fragment_oder).commit();
+                }else if (taikhoan.equals("admin") && matkhau.equals("123") && item.getItemId() == R.id.Oder){
+                    fm.beginTransaction().replace(R.id.frameLayout, fragment_oder_admin).commit();
+                }else if (taikhoan.toString() != "admin" && matkhau.toString() != "123" && item.getItemId() == R.id.Oder){
+                    fm.beginTransaction().replace(R.id.frameLayout, fragment_oder_khachHang).commit();
                 }else if(item.getItemId() == R.id.Notification){
                     fm.beginTransaction().replace(R.id.frameLayout, fragment_thongBao).commit();
                 } else if (taikhoan.equals("admin") && matkhau.equals("123") && item.getItemId() == R.id.Account) {
@@ -91,3 +97,4 @@ public class Main extends AppCompatActivity {
 
     }
 }
+

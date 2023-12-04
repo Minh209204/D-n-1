@@ -3,16 +3,25 @@ package com.example.duan1.Model;
 public class Model_SanPham {
     private int MaSP, MaTL;
     private String TenTL, TenSP, AnhSP, GioiThieuSP;
-    private int GiaTienSP, LuotMuaSP, TonTai;
+    private int GiaTienSP, LuotMuaSP, SoLuong;
 
-    public Model_SanPham(String tenTL, String tenSP, String anhSP, String gioiThieuSP, int giaTienSP, int luotMuaSP, int tonTai) {
+    public Model_SanPham(String tenTL, String tenSP, String anhSP, String gioiThieuSP, int giaTienSP, int luotMuaSP) {
         TenTL = tenTL;
         TenSP = tenSP;
         AnhSP = anhSP;
         GioiThieuSP = gioiThieuSP;
         GiaTienSP = giaTienSP;
         LuotMuaSP = luotMuaSP;
-        TonTai = tonTai;
+    }
+    public Model_SanPham() {
+    }
+
+    public int getSoLuong() {
+        return SoLuong;
+    }
+
+    public void setSoLuong(int soLuong) {
+        SoLuong = soLuong;
     }
 
     public String getTenTL() {
@@ -22,14 +31,6 @@ public class Model_SanPham {
     public void setTenTL(String tenTL) {
         TenTL = tenTL;
     }
-
-    public int getTonTai() {
-        return TonTai;
-    }
-
-    public Model_SanPham() {
-    }
-
     public int getMaSP() {
         return MaSP;
     }
@@ -86,11 +87,5 @@ public class Model_SanPham {
         LuotMuaSP = luotMuaSP;
     }
 
-    public int isTonTai() {
-        return TonTai;
-    }
 
-    public void setTonTai(int tonTai) {
-        TonTai = tonTai;
-    }
 }

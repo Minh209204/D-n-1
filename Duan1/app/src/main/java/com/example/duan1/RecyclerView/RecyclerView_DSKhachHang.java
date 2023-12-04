@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -45,6 +46,16 @@ public class RecyclerView_DSKhachHang extends RecyclerView.Adapter<RecyclerView_
         holder.txt_qlkh_account.setText(model_taiKhoan.getTaiKhoan());
         holder.txt_qlkh_password.setText(model_taiKhoan.getMatKhau());
         holder.txt_qlkh_sdt.setText(model_taiKhoan.getSDTKH() + "");
+        holder.img_qlkh_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                model_taiKhoan.getMaKH();
+                table_taiKhoan.delete(model_taiKhoan);
+                list.clear();
+                list = table_taiKhoan.getAll();
+                notifyDataSetChanged();
+            }
+        });
 
     }
 
@@ -55,12 +66,14 @@ public class RecyclerView_DSKhachHang extends RecyclerView.Adapter<RecyclerView_
 
     public class Holder_KhachHang extends RecyclerView.ViewHolder {
         TextView txt_qlkh_name, txt_qlkh_account, txt_qlkh_password, txt_qlkh_sdt;
+        ImageButton img_qlkh_delete;
         public Holder_KhachHang(@NonNull View itemView) {
             super(itemView);
             txt_qlkh_name = itemView.findViewById(R.id.txt_qlkh_name);
             txt_qlkh_account = itemView.findViewById(R.id.txt_qlkh_account);
             txt_qlkh_password = itemView.findViewById(R.id.txt_qlkh_password);
             txt_qlkh_sdt = itemView.findViewById(R.id.txt_qlkh_sdt);
+            img_qlkh_delete = itemView.findViewById(R.id.img_qlkh_delete);
         }
     }
 

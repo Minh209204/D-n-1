@@ -4,24 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.Create_Product"
     android:padding="10dp"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_createSP"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="27dp"
-        android:layout_gravity="center"
+        android:textSize="22dp"
         android:textStyle="bold"
-        android:text="Thêm sản phẩm"/>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/img_logo"
-        android:scaleType="centerCrop"/>
+        android:gravity="center"
+        android:text="Tạo sản phẩm"/>
 
     <EditText
         android:id="@+id/edt_name"
@@ -29,12 +21,13 @@
         android:layout_height="wrap_content"
         android:hint="Nhập tên sản phẩm"
         android:padding="10dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/layout_edittext"/>
 
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:padding="10dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/layout_edittext"/>
@@ -46,6 +39,16 @@
         android:layout_height="wrap_content"
         android:hint="Nhập giá sản phẩm"
         android:padding="10dp"
+        android:background="@drawable/layout_edittext"/>
+
+    <EditText
+        android:id="@+id/edt_soluong"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập số lượng sản phẩm"
+        android:padding="10dp"
+        android:maxLines="1"
         android:background="@drawable/layout_edittext"/>
 
     <EditText

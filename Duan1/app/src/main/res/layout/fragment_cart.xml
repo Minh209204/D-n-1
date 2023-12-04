@@ -43,7 +43,7 @@
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/txt_tongTien"
+            android:id="@+id/txt_tong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
