@@ -37,17 +37,6 @@ public class Fragment_Oder_Admin extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-//        table_khachHang = new Table_KhachHang(getContext());
-//        Model_KhachHang model_khachHang = new Model_KhachHang();
-//        SharedPreferences sharedPreferences = getContext().getSharedPreferences("account", Context.MODE_PRIVATE);
-//        String taikhoan = sharedPreferences.getString("taikhoan", "");
-//        String matkhau = sharedPreferences.getString("matkhau", "");
-//        model_khachHang.setTaiKhoan(taikhoan);
-//        model_khachHang.setMatKhau(matkhau);
-//        List<Model_KhachHang> listMaKH = table_khachHang.checkKhachHang(model_khachHang);
-//        Model_DonHang model_donHang = new Model_DonHang();
-//        model_donHang.setMaKH(listMaKH.get(0).getMaKH());
-
         table_donHang = new Table_DonHang(getContext());
         List<Model_DonHang> listDH = table_donHang.getAll();
         recyclerView_oder_admin = new RecyclerView_Oder_Admin(getContext(), listDH);

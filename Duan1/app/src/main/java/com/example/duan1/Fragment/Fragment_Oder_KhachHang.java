@@ -3,6 +3,7 @@ package com.example.duan1.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,22 +41,24 @@ public class Fragment_Oder_KhachHang extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         table_khachHang = new Table_KhachHang(getContext());
+        table_donHang = new Table_DonHang(getContext());
         Model_KhachHang model_khachHang = new Model_KhachHang();
+        Model_DonHang model_donHang = new Model_DonHang();
+
+        rcy_oder = view.findViewById(R.id.rcy_oder);
+
+        //tim khach hang theo tai khoan mat khau khi dang nhap
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("account", Context.MODE_PRIVATE);
         String taikhoan = sharedPreferences.getString("taikhoan", "");
         String matkhau = sharedPreferences.getString("matkhau", "");
         model_khachHang.setTaiKhoan(taikhoan);
         model_khachHang.setMatKhau(matkhau);
         List<Model_KhachHang> listMaKH = table_khachHang.checkKhachHang(model_khachHang);
-        Model_DonHang model_donHang = new Model_DonHang();
         model_donHang.setMaKH(listMaKH.get(0).getMaKH());
 
-        table_donHang = new Table_DonHang(getContext());
-        List<Model_DonHang> listDH = table_donHang.getSanPHamKhachHang(model_donHang);
-        Toast.makeText(getContext(), listDH.size() + "", Toast.LENGTH_SHORT).show();
+        List<Model_DonHang> listDH = table_donHang.getHoaDonKhachHang(model_donHang);
+        Log.d("TAG", "onViewCreated: " + model_donHang.getMaKH() + "");
         recyclerView_oder_khachHang = new RecyclerView_Oder_KhachHang(getContext(), listDH);
-
-        rcy_oder = view.findViewById(R.id.rcy_oder);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rcy_oder.setAdapter(recyclerView_oder_khachHang);

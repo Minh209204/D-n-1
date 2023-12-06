@@ -57,7 +57,7 @@ public class DataHelper extends SQLiteOpenHelper {
 
         String DONHANG = "CREATE TABLE \"DONHANG\" (\n" +
                 "\t\"MADH\"\tINTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
-                "\t\"MAGH\"\tINTEGER,\n" +
+                "\t\"MAGH\"\tTEXT,\n" +
                 "\t\"MASP\"\tINTEGER,\n" +
                 "\t\"MAKH\"\tINTEGER,\n" +
                 "\t\"TENKH\"\tTEXT,\n" +

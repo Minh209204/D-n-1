@@ -66,6 +66,7 @@ public class Table_DonHang {
         return result != -1;
     }
 
+    //lay ra tat ca hoa don
     public List<Model_DonHang> getAll(){
         List<Model_DonHang> list = new ArrayList<>();
 
@@ -77,7 +78,7 @@ public class Table_DonHang {
                 Model_DonHang model_donHang = new Model_DonHang();
 
                 int madh = c.getInt(0);
-                int magh = c.getInt(1);
+                String magh = c.getString(1);
                 int masp = c.getInt(2);
                 int makh = c.getInt(2);
                 String tenkh = c.getString(4);
@@ -85,7 +86,7 @@ public class Table_DonHang {
                 String anhsp = c.getString(6);
                 String tensp = c.getString(7);
                 int giasp = c.getInt(8);
-                int soluong = c.getInt(9);
+                String soluong = c.getString(9);
                 int tongtien = c.getInt(10);
                 String diachi = c.getString(11);
                 String trangthai = c.getString(12);
@@ -109,7 +110,9 @@ public class Table_DonHang {
         }
         return list;
     }
-    public List<Model_DonHang> getSanPHamKhachHang(Model_DonHang model_donHang){
+
+    //Lay ra tat ca hoa don theo makh
+    public List<Model_DonHang> getHoaDonKhachHang(Model_DonHang model_donHang){
         List<Model_DonHang> list = new ArrayList<>();
 
         String dieukien[] = new String[]{String.valueOf(model_donHang.getMaKH())};
@@ -120,7 +123,7 @@ public class Table_DonHang {
             do {
                 model_donHang = new Model_DonHang();
                 int madh = c.getInt(0);
-                int magh = c.getInt(1);
+                String magh = c.getString(1);
                 int masp = c.getInt(2);
                 int makh = c.getInt(2);
                 String tenkh = c.getString(4);
@@ -128,7 +131,7 @@ public class Table_DonHang {
                 String anhsp = c.getString(6);
                 String tensp = c.getString(7);
                 int giasp = c.getInt(8);
-                int soluong = c.getInt(9);
+                String soluong = c.getString(9);
                 int tongtien = c.getInt(10);
                 String diachi = c.getString(11);
                 String trangthai = c.getString(12);
@@ -153,6 +156,7 @@ public class Table_DonHang {
         return list;
     }
 
+    //lay ra tat ca hoa don theo trang thai
     public List<Model_DonHang> getThongKe(Model_DonHang model_donHang){
         List<Model_DonHang> list = new ArrayList<>();
 
@@ -164,7 +168,7 @@ public class Table_DonHang {
             do {
                 model_donHang = new Model_DonHang();
                 int madh = c.getInt(0);
-                int magh = c.getInt(1);
+                String magh = c.getString(1);
                 int masp = c.getInt(2);
                 int makh = c.getInt(2);
                 String tenkh = c.getString(4);
@@ -172,7 +176,7 @@ public class Table_DonHang {
                 String anhsp = c.getString(6);
                 String tensp = c.getString(7);
                 int giasp = c.getInt(8);
-                int soluong = c.getInt(9);
+                String soluong = c.getString(9);
                 int tongtien = c.getInt(10);
                 String diachi = c.getString(11);
                 String trangthai = c.getString(12);

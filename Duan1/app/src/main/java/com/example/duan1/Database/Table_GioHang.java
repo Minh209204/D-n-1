@@ -59,6 +59,7 @@ public class Table_GioHang {
         return result != -1;
     }
 
+    //lay ra san pham cua khach hang theo makh
     public List<Model_GioHang> getAll(Model_KhachHang model_khachHang){
         List<Model_GioHang> list = new ArrayList<>();
         String dieukien[] = new String[]{String.valueOf(model_khachHang.getMaKH())};
@@ -95,48 +96,12 @@ public class Table_GioHang {
         return list;
     }
 
-    public List<Model_GioHang> getSanPham(Model_GioHang model_gioHang){
-        List<Model_GioHang> list = new ArrayList<>();
-
-        String dieukien[] = new String[]{String.valueOf(model_gioHang.getCheckBox())};
-        Cursor c = db.rawQuery("SELECT * FROM GIOHANG WHERE CHECKBOX = ?", dieukien);
-        c.moveToFirst();
-
-        if (c != null && c.getCount() > 0){
-            do {
-                Model_GioHang gioHang = new Model_GioHang();
-                int magh = c.getInt(0);
-                int makh = c.getInt(1);
-                int masp = c.getInt(2);
-                String tensp = c.getString(3);
-                String anhsp = c.getString(4);
-                int giasp = c.getInt(5);
-                int checkbox = c.getInt(6);
-                int soluongsp = c.getInt(7);
-                int soluong = c.getInt(8);
-
-                gioHang.setMaGH(magh);
-                gioHang.setMaKH(makh);
-                gioHang.setMaSP(masp);
-                gioHang.setTenSP(tensp);
-                gioHang.setAnhSP(anhsp);
-                gioHang.setGiaSP(giasp);
-                gioHang.setCheckBox(checkbox);
-                gioHang.setSoLuongSP(soluongsp);
-                gioHang.setSoLuong(soluong);
-
-                list.add(gioHang);
-            }while (c.moveToNext());
-        }
-        return list;
-    }
-
-
-    public List<Model_GioHang> MuaSanPham(Model_GioHang model_gioHang){
+    //lay ra nhung san pham cua makh va duoc khach hang chon
+    public List<Model_GioHang>getSanPhamDuocMua(Model_GioHang model_gioHang){
         List<Model_GioHang> list = new ArrayList<>();
 
         String dieukien[] = new String[]{String.valueOf(model_gioHang.getCheckBox()), String.valueOf(model_gioHang.getMaKH())};
-        Cursor c = db.rawQuery("SELECT * FROM GIOHANG JOIN KHACHHANG ON KHACHHANG.MAKH = GIOHANG.MAKH WHERE GIOHANG.CHECKBOX = ? AND GIOHANG.MAKH = ?", dieukien);
+        Cursor c = db.rawQuery("SELECT * FROM GIOHANG WHERE GIOHANG.CHECKBOX = ? AND GIOHANG.MAKH = ?", dieukien);
         c.moveToFirst();
 
         if (c != null && c.getCount() > 0){
@@ -167,4 +132,42 @@ public class Table_GioHang {
         }
         return list;
     }
+
+    //lay ra san pham theo MAGH
+    public List<Model_GioHang> getSanPhamTheoMaGH(Model_GioHang model_gioHang){
+        List<Model_GioHang> list = new ArrayList<>();
+
+        String dieukien[] = new String[]{String.valueOf(model_gioHang.getMaGH())};
+        Cursor c = db.rawQuery("SELECT * FROM GIOHANG WHERE MAGH = ?", dieukien);
+        c.moveToFirst();
+
+        if (c.getCount() > 0){
+            do {
+                Model_GioHang gioHang = new Model_GioHang();
+                int magh = c.getInt(0);
+                int makh = c.getInt(1);
+                int masp = c.getInt(2);
+                String tensp = c.getString(3);
+                String anhsp = c.getString(4);
+                int giasp = c.getInt(5);
+                int checkbox = c.getInt(6);
+                int soluongsp = c.getInt(7);
+                int soluong = c.getInt(8);
+
+                gioHang.setMaGH(magh);
+                gioHang.setMaKH(makh);
+                gioHang.setMaSP(masp);
+                gioHang.setTenSP(tensp);
+                gioHang.setAnhSP(anhsp);
+                gioHang.setGiaSP(giasp);
+                gioHang.setCheckBox(checkbox);
+                gioHang.setSoLuongSP(soluongsp);
+                gioHang.setSoLuong(soluong);
+
+                list.add(gioHang);
+            }while (c.moveToNext());
+        }
+        return list;
+    }
+
 }

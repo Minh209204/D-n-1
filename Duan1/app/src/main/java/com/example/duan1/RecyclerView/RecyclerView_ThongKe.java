@@ -60,10 +60,10 @@ public class RecyclerView_ThongKe extends RecyclerView.Adapter<RecyclerView_Thon
 
         List<Model_DonHang> list = table_donHang.getThongKe(model_donHang1);
         Toast.makeText(context, list.size() + "", Toast.LENGTH_SHORT).show();
-        recyclerView_oder_product = new RecyclerView_Oder_Product(context, list);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
-        holder.rcy_oder.setLayoutManager(layoutManager);
-        holder.rcy_oder.setAdapter(recyclerView_oder_product);
+//        recyclerView_oder_product = new RecyclerView_Oder_Product(context, list);
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+//        holder.rcy_oder.setLayoutManager(layoutManager);
+//        holder.rcy_oder.setAdapter(recyclerView_oder_product);
     }
 
     @Override

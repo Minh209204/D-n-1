@@ -17,6 +17,7 @@ import com.example.duan1.Fragment.Fragment_Oder_Admin;
 import com.example.duan1.Fragment.Fragment_Oder_KhachHang;
 import com.example.duan1.Fragment.Fragment_ThongBao;
 import com.example.duan1.Fragment.Fragment_ThongTin_Admin;
+//import com.example.duan1.Fragment.Fragment_ThongTin_KhacHang;
 import com.example.duan1.Fragment.Fragment_ThongTin_KhacHang;
 import com.example.duan1.Model.Model_KhachHang;
 import com.example.duan1.R;

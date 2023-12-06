@@ -75,6 +75,7 @@ public class InforProduct extends AppCompatActivity {
         Picasso.get().load(list.get(0).getAnhSP()).into(img_product);
         txt_product_name.setText(list.get(0).getTenSP());
         txt_product_price.setText(list.get(0).getGiaTienSP() + "");
+        txt_product_gioiThieu.setText(list.get(0).getGioiThieuSP());
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override

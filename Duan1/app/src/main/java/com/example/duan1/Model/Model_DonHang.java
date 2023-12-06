@@ -1,11 +1,11 @@
 package com.example.duan1.Model;
 
 public class Model_DonHang {
-    private int MaDH, MaGH, MaKH, MaSP;
-    private String TenKH, DiaChiKH, AnhSP, TenSP, TrangThai;
-    private int SDT, SoLuongSP, GiaSP, TongTien;
+    private int MaDH, MaKH, MaSP;
+    private String TenKH, DiaChiKH, AnhSP, TenSP, TrangThai, MaGH, SoLuongSP;
+    private int SDT, GiaSP, TongTien;
 
-    public Model_DonHang(int maDH, int maGH, int maKH, int maSP, String tenKH, String diaChiKH, String anhSP, String tenSP, String trangThai, int SDT, int soLuongSP, int giaSP, int tongTien) {
+    public Model_DonHang(int maDH, String maGH, int maKH, int maSP, String tenKH, String diaChiKH, String anhSP, String tenSP, String trangThai, int SDT, String soLuongSP, int giaSP, int tongTien) {
         MaDH = maDH;
         MaGH = maGH;
         MaKH = maKH;
@@ -21,20 +21,28 @@ public class Model_DonHang {
         TongTien = tongTien;
     }
 
+    public String getSoLuongSP() {
+        return SoLuongSP;
+    }
+
+    public void setSoLuongSP(String soLuongSP) {
+        SoLuongSP = soLuongSP;
+    }
+
+    public String getMaGH() {
+        return MaGH;
+    }
+
+    public void setMaGH(String maGH) {
+        MaGH = maGH;
+    }
+
     public String getTrangThai() {
         return TrangThai;
     }
 
     public void setTrangThai(String trangThai) {
         TrangThai = trangThai;
-    }
-
-    public int getMaGH() {
-        return MaGH;
-    }
-
-    public void setMaGH(int maGH) {
-        MaGH = maGH;
     }
 
     public int getGiaSP() {
@@ -113,13 +121,7 @@ public class Model_DonHang {
         this.SDT = SDT;
     }
 
-    public int getSoLuongSP() {
-        return SoLuongSP;
-    }
 
-    public void setSoLuongSP(int soLuongSP) {
-        SoLuongSP = soLuongSP;
-    }
 
     public int getTongTien() {
         return TongTien;

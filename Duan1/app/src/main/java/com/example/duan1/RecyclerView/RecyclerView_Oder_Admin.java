@@ -14,14 +14,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.duan1.Database.Table_DonHang;
+import com.example.duan1.Database.Table_GioHang;
 import com.example.duan1.Database.Table_KhachHang;
 import com.example.duan1.Database.Table_SanPham;
 import com.example.duan1.Model.Model_DonHang;
+import com.example.duan1.Model.Model_GioHang;
 import com.example.duan1.Model.Model_KhachHang;
 import com.example.duan1.Model.Model_SanPham;
 import com.example.duan1.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class RecyclerView_Oder_Admin extends RecyclerView.Adapter<RecyclerView_Oder_Admin.Holder_Oder_Admin>{
@@ -30,6 +33,8 @@ public class RecyclerView_Oder_Admin extends RecyclerView.Adapter<RecyclerView_O
     Table_DonHang table_donHang;
     Table_KhachHang table_khachHang;
     Table_SanPham table_sanPham;
+    Table_GioHang table_gioHang;
+    Model_GioHang model_gioHang;
     RecyclerView_Oder_Product recyclerView_oder_product;
 
     public RecyclerView_Oder_Admin(Context context, List<Model_DonHang> listDH) {
@@ -51,6 +56,7 @@ public class RecyclerView_Oder_Admin extends RecyclerView.Adapter<RecyclerView_O
         table_donHang = new Table_DonHang(context);
         table_khachHang = new Table_KhachHang(context);
         table_sanPham = new Table_SanPham(context);
+        table_gioHang = new Table_GioHang(context);
 
         Model_DonHang model_donHang = listDH.get(position);
 
@@ -63,39 +69,62 @@ public class RecyclerView_Oder_Admin extends RecyclerView.Adapter<RecyclerView_O
         holder.btn_huy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                model_donHang.getMaDH();
-                if (table_donHang.delete(model_donHang)){
-                    listDH.clear();
-                    listDH = table_donHang.getAll();
-                    notifyDataSetChanged();
-                    Toast.makeText(context, "Xóa đơn hàng thành công", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(context, "Xóa thất bại", Toast.LENGTH_SHORT).show();
-                }
+                huy(model_donHang);
             }
         });
-        
         holder.btn_xacnhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                model_donHang.getMaDH();
-                model_donHang.setTrangThai("Đã xác nhận");
-                if (table_donHang.update(model_donHang)){
-                    notifyDataSetChanged();
-                    Toast.makeText(context, "Xác nhận đơn thành công", Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(context, "Xác nhận thất bại", Toast.LENGTH_SHORT).show();
-                }
+                xacnhan(model_donHang);
             }
         });
 
-        List<Model_DonHang> listDH = table_donHang.getAll();
+        //san pham vao recyclerview
+        List<Model_DonHang> listAllDH = table_donHang.getAll();
+        List<Model_DonHang> listDHSanPham = new ArrayList<>();
+        String MaSP = String.valueOf(listAllDH.get(position).getMaGH());
+        String SoluongSP = String.valueOf(listAllDH.get(position).getSoLuongSP());
 
-        recyclerView_oder_product = new RecyclerView_Oder_Product(context, listDH);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
-        holder.rcy_oder.setLayoutManager(layoutManager);
-        holder.rcy_oder.setAdapter(recyclerView_oder_product);
+        if (MaSP.length() > 1){
+            String arraySP[] = MaSP.split(",");
+            String arraySlSP[] = SoluongSP.split(",");
+            for (int i=0; i < arraySP.length; i++){
+                model_gioHang = new Model_GioHang();
+                model_gioHang.setMaGH(Integer.parseInt(arraySP[i]));
 
+                List<Model_GioHang> listGH = table_gioHang.getSanPhamTheoMaGH(model_gioHang);
+
+                Model_DonHang model_donHang1 = new Model_DonHang();
+
+                model_donHang1.setTenSP(listGH.get(0).getTenSP());
+                model_donHang1.setGiaSP(listGH.get(0).getGiaSP());
+                model_donHang1.setSoLuongSP(String.valueOf(listGH.get(0).getSoLuongSP()));
+                model_donHang1.setAnhSP(listGH.get(0).getAnhSP());
+                model_donHang1.setSoLuongSP(arraySlSP[i]);
+                listDHSanPham.add(model_donHang1);
+            }
+            recyclerView_oder_product = new RecyclerView_Oder_Product(context, listDHSanPham);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+            holder.rcy_oder.setLayoutManager(layoutManager);
+            holder.rcy_oder.setAdapter(recyclerView_oder_product);
+
+        }else if (MaSP.length() == 1){
+            model_gioHang = new Model_GioHang();
+            model_gioHang.setMaGH(Integer.parseInt(model_donHang.getMaGH()));
+            List<Model_GioHang> listGH = table_gioHang.getSanPhamTheoMaGH(model_gioHang);
+            model_donHang.setTenSP(listGH.get(0).getTenSP());
+            model_donHang.setGiaSP(listGH.get(0).getGiaSP());
+            model_donHang.setAnhSP(listGH.get(0).getAnhSP());
+            model_donHang.setSoLuongSP(String.valueOf(listGH.get(0).getSoLuongSP()));
+            listDHSanPham.add(model_donHang);
+
+            recyclerView_oder_product = new RecyclerView_Oder_Product(context, listDHSanPham);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+            holder.rcy_oder.setLayoutManager(layoutManager);
+            holder.rcy_oder.setAdapter(recyclerView_oder_product);
+        }else {
+            Toast.makeText(context, "Xuất giỏ hàng thất bại", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -117,8 +146,31 @@ public class RecyclerView_Oder_Admin extends RecyclerView.Adapter<RecyclerView_O
             txt_oder_tongtien = itemView.findViewById(R.id.txt_oder_tongtien);
             btn_huy = itemView.findViewById(R.id.btn_huy);
             btn_xacnhan = itemView.findViewById(R.id.btn_xacnhan);
-            rcy_oder = itemView.findViewById(R.id.rcy_oder);
+            rcy_oder = itemView.findViewById(R.id.rcy_oder_admin);
 
+        }
+    }
+
+    public void huy(Model_DonHang model_donHang){
+        model_donHang.getMaDH();
+        if (table_donHang.delete(model_donHang)){
+            listDH.clear();
+            listDH = table_donHang.getAll();
+            notifyDataSetChanged();
+            Toast.makeText(context, "Xóa đơn hàng thành công", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(context, "Xóa thất bại", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void xacnhan(Model_DonHang model_donHang){
+        model_donHang.getMaDH();
+        model_donHang.setTrangThai("Đã xác nhận");
+        if (table_donHang.update(model_donHang)){
+            notifyDataSetChanged();
+            Toast.makeText(context, "Xác nhận đơn thành công", Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(context, "Xác nhận thất bại", Toast.LENGTH_SHORT).show();
         }
     }
 }

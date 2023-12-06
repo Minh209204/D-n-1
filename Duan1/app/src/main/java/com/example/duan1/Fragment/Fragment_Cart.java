@@ -83,7 +83,17 @@ public class Fragment_Cart extends Fragment {
         layout_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                luuSanPham();
+                table_gioHang = new Table_GioHang(getContext());
+                Model_GioHang model_gioHang = new Model_GioHang();
+                model_gioHang.setMaKH(listKH.get(0).getMaKH());
+                model_gioHang.setCheckBox(1);
+                listGH = table_gioHang.getSanPhamDuocMua(model_gioHang);
+                if (listGH.size() != 0){
+                    MuaSanPham();
+                }else {
+                    Toast.makeText(getContext(), "Vui lòng chọn sản phẩm", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
         tinhTong();
@@ -91,7 +101,7 @@ public class Fragment_Cart extends Fragment {
 
 
 
-    public void luuSanPham(){
+    public void MuaSanPham(){
         int tong = 0;
 
         //lay ra khach hang
@@ -109,22 +119,24 @@ public class Fragment_Cart extends Fragment {
         Model_GioHang model_gioHang = new Model_GioHang();
         model_gioHang.setMaKH(listMaKH.get(0).getMaKH());
         model_gioHang.setCheckBox(1);
-        listGH = table_gioHang.MuaSanPham(model_gioHang);
+        listGH = table_gioHang.getSanPhamDuocMua(model_gioHang);
 
         //luu vao don hang
         table_donHang = new Table_DonHang(getContext());
         Model_DonHang model_donHang = new Model_DonHang();
         List<Model_DonHang> listDH = new ArrayList<>();
 
-        //lay tong so tien cua san pham trong gio hang
+        //check so luong san pham duoc mua
         for (int i=0; i<listGH.size(); i++){
-            int magh = listGH.get(i).getMaGH();
+            String magh = String.valueOf(listGH.get(i).getMaGH());
             int makh = listGH.get(i).getMaKH();
             int masp = listGH.get(i).getMaSP();
             String tensp = listGH.get(i).getTenSP();
             String anhsp = listGH.get(i).getAnhSP();
-            int soLuong = listGH.get(i).getSoLuongSP();
+            String soLuong = String.valueOf(listGH.get(i).getSoLuongSP());
             int giaSanPham = listGH.get(i).getGiaSP();
+
+            model_donHang = new Model_DonHang();
 
             model_donHang.setMaGH(magh);
             model_donHang.setMaKH(makh);
@@ -137,15 +149,27 @@ public class Fragment_Cart extends Fragment {
             listDH.add(model_donHang);
         }
 
-        // luu vao database gio hang
+        //noi chuoi nhung san pham duoc chon theo MAGH
         String arrMaGh = null;
-        for (int i=0; i<listDH.size(); i++){
-            String magh = String.valueOf(listGH.get(i).getMaGH());
-            if (arrMaGh == null){
-                arrMaGh = magh;
-            }else {
-                arrMaGh += magh;
+        String arrSoluongSP = null;
+        if (listDH.size() > 1){
+            arrMaGh = String.valueOf(listGH.get(0).getMaGH());
+            arrSoluongSP = String.valueOf(listDH.get(0).getSoLuongSP());
+            for (int i=1; i<listDH.size(); i++){
+                String magh = String.valueOf(listGH.get(i).getMaGH());
+                String soluongsp = String.valueOf(listDH.get(i).getSoLuongSP());
+                arrMaGh += "," + magh;
+                arrSoluongSP += "," + soluongsp;
             }
+        }else if (listDH.size() == 1){
+            arrMaGh = String.valueOf(listGH.get(0).getMaGH());
+            arrSoluongSP = String.valueOf(listGH.get(0).getSoLuongSP());
+        }else {
+            Toast.makeText(getContext(), "Lỗi tại giỏ hàng", Toast.LENGTH_SHORT).show();
+        }
+
+        //set tong tien gio hang
+        for (int i=0; i<listDH.size(); i++){
             int soLuong = listGH.get(i).getSoLuongSP();
             int giaSanPham = listGH.get(i).getGiaSP();
             tong += soLuong * giaSanPham;
@@ -154,15 +178,18 @@ public class Fragment_Cart extends Fragment {
         model_donHang.setMaKH(listMaKH.get(0).getMaKH());
         List<Model_KhachHang> listKH = table_khachHang.getKhachHang(model_donHang);
 
-        model_donHang.setMaGH(Integer.parseInt(arrMaGh));
-        model_donHang.setTenKH(listKH.get(0).getTenKH());
-        model_donHang.setSDT(Integer.parseInt(listKH.get(0).getSDTKH()));
-        model_donHang.setDiaChiKH(listKH.get(0).getDiaChiKH());
-        model_donHang.setTongTien(tong);
-        model_donHang.setTrangThai("Chờ xác nhận");
+        Model_DonHang model_donHang1 = new Model_DonHang();
 
+        model_donHang1.setMaGH(arrMaGh);
+        model_donHang1.setMaKH(model_gioHang.getMaKH());
+        model_donHang1.setTenKH(listKH.get(0).getTenKH());
+        model_donHang1.setSDT(Integer.parseInt(listKH.get(0).getSDTKH()));
+        model_donHang1.setDiaChiKH(listKH.get(0).getDiaChiKH());
+        model_donHang1.setSoLuongSP(arrSoluongSP);
+        model_donHang1.setTongTien(tong);
+        model_donHang1.setTrangThai("Chờ xác nhận");
 
-        if (table_donHang.insert(model_donHang)){
+        if (table_donHang.insert(model_donHang1)){
             Toast.makeText(getContext(), "Tạo đơn hàng thành công", Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(getContext(), "Tạo đơn hàng thất bại", Toast.LENGTH_SHORT).show();
@@ -170,6 +197,7 @@ public class Fragment_Cart extends Fragment {
         txt_tong.setText(tong +"");
     }
 
+    //set tong tien vao text gio hang
     public void tinhTong(){
         int tong = 0;
 
@@ -186,9 +214,7 @@ public class Fragment_Cart extends Fragment {
         Model_GioHang model_gioHang = new Model_GioHang();
         model_gioHang.setCheckBox(1);
         model_gioHang.setMaKH(listKH.get(0).getMaKH());
-        listGH = table_gioHang.MuaSanPham(model_gioHang);
-
-
+        listGH = table_gioHang.getSanPhamDuocMua(model_gioHang);
 
         //lay tong so tien cua san pham trong gio hang
         for (int i=0; i<listGH.size(); i++){
