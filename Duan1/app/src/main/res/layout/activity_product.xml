@@ -47,7 +47,7 @@
 
     <TextView
         android:id="@+id/txt_product_gioiThieu"
-        android:layout_width="match_parent"admin
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="20dp"
