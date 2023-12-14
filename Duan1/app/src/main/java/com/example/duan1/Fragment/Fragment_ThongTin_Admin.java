@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.example.duan1.Activity.DanhSachKhachHang;
@@ -20,7 +22,6 @@ import com.example.duan1.Activity.ThongKe;
 import com.example.duan1.R;
 
 public class Fragment_ThongTin_Admin extends Fragment {
-
     TextView thongke, qlsanpham, qlkhachhang, dangxuat;
 
     @Nullable

@@ -43,10 +43,12 @@
             android:layout_height="wrap_content"
             android:textSize="18dp"
             android:text="Tài khoản: "/>
-        <EditText
+        <TextView
             android:id="@+id/edt_account_kh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:padding="5dp"
             android:hint="Nhập tài khoản"/>
     </LinearLayout>
 

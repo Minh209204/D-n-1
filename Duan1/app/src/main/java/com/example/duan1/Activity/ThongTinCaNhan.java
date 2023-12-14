@@ -28,7 +28,8 @@ public class ThongTinCaNhan extends AppCompatActivity {
     Toolbar toolbar;
     ImageView img_kh;
     Button btn_hoanThanh;
-    EditText edt_name_kh, edt_account_kh, edt_password_kh, edt_sdt_kh, edt_address_kh;
+    EditText edt_name_kh, edt_password_kh, edt_sdt_kh, edt_address_kh;
+    TextView edt_account_kh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

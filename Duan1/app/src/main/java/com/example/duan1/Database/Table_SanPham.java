@@ -103,7 +103,7 @@ public class Table_SanPham {
         List<Model_SanPham> list = new ArrayList<>();
 
         String dieukien[] = new String[]{String.valueOf(pham.getMaTL())};
-        Cursor c = db.rawQuery("SELECT * FROM SANPHAM JOIN THELOAI ON THELOAI.MATL = SANPHAM.MATL WHERE MATL = ?", dieukien);
+        Cursor c = db.rawQuery("SELECT * FROM SANPHAM WHERE MATL = ?", dieukien);
         c.moveToFirst();
 
         if (c != null && c.getCount() > 0){

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -70,12 +71,68 @@ public class RecyclerView_Oder_Admin extends RecyclerView.Adapter<RecyclerView_O
             @Override
             public void onClick(View v) {
                 huy(model_donHang);
+                holder.layout_trangthai.setVisibility(View.GONE);
+
             }
         });
         holder.btn_xacnhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 xacnhan(model_donHang);
+                holder.layout_trangthai.setVisibility(View.GONE);
+                String MaGH = model_donHang.getMaGH();
+                String Soluong = model_donHang.getSoLuongSP();
+                if (MaGH.length() > 1){
+                    String arrMaGh[] = MaGH.split(",");
+                    String arrSoluong[] = Soluong.split(",");
+                    for (int i=0 ; i < arrMaGh.length; i++){
+                        model_gioHang = new Model_GioHang();
+                        model_gioHang.setMaGH(Integer.parseInt(arrMaGh[i]));
+
+                        List<Model_GioHang> listGH = table_gioHang.getSanPhamTheoMaGH(model_gioHang);
+
+                        Model_SanPham model_sanPham = new Model_SanPham();
+                        model_sanPham.setMaSP(listGH.get(0).getMaSP());
+
+                        List<Model_SanPham> listSP = table_sanPham.getMASP(model_sanPham);
+                        int tongSoLuong = listSP.get(0).getLuotMuaSP();
+                        model_sanPham.setMaTL(listSP.get(0).getMaTL());
+                        model_sanPham.setTenTL(listSP.get(0).getTenTL());
+                        model_sanPham.setTenSP(listSP.get(0).getTenSP());
+                        model_sanPham.setGiaTienSP(listSP.get(0).getGiaTienSP());
+                        model_sanPham.setAnhSP(listSP.get(0).getAnhSP());
+                        model_sanPham.setLuotMuaSP(tongSoLuong += Integer.parseInt(arrSoluong[i]));
+                        model_sanPham.setGioiThieuSP(listSP.get(0).getGioiThieuSP());
+                        model_sanPham.setSoLuong(listSP.get(0).getSoLuong());
+
+                        if (table_sanPham.update(model_sanPham)){
+                            Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                } else if (MaGH.length() == 1) {
+                    model_gioHang = new Model_GioHang();
+                    model_gioHang.setMaGH(Integer.parseInt(MaGH));
+
+                    List<Model_GioHang> listGH = table_gioHang.getSanPhamTheoMaGH(model_gioHang);
+
+                    Model_SanPham model_sanPham = new Model_SanPham();
+                    model_sanPham.setMaSP(listGH.get(0).getMaSP());
+
+                    List<Model_SanPham> listSP = table_sanPham.getMASP(model_sanPham);
+                    int tongSoLuong = listSP.get(0).getLuotMuaSP();
+                    model_sanPham.setMaTL(listSP.get(0).getMaTL());
+                    model_sanPham.setTenTL(listSP.get(0).getTenTL());
+                    model_sanPham.setTenSP(listSP.get(0).getTenSP());
+                    model_sanPham.setGiaTienSP(listSP.get(0).getGiaTienSP());
+                    model_sanPham.setAnhSP(listSP.get(0).getAnhSP());
+                    model_sanPham.setLuotMuaSP(tongSoLuong += Integer.parseInt(Soluong));
+                    model_sanPham.setGioiThieuSP(listSP.get(0).getGioiThieuSP());
+                    model_sanPham.setSoLuong(listSP.get(0).getSoLuong());
+
+                    if (table_sanPham.update(model_sanPham)){
+                        Toast.makeText(context, "okokokokok", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
 
@@ -92,14 +149,14 @@ public class RecyclerView_Oder_Admin extends RecyclerView.Adapter<RecyclerView_O
                 model_gioHang = new Model_GioHang();
                 model_gioHang.setMaGH(Integer.parseInt(arraySP[i]));
 
-                List<Model_GioHang> listGH = table_gioHang.getSanPhamTheoMaGH(model_gioHang);
+                List<Model_GioHang> listGH1 = table_gioHang.getSanPhamTheoMaGH(model_gioHang);
 
                 Model_DonHang model_donHang1 = new Model_DonHang();
 
-                model_donHang1.setTenSP(listGH.get(0).getTenSP());
-                model_donHang1.setGiaSP(listGH.get(0).getGiaSP());
-                model_donHang1.setSoLuongSP(String.valueOf(listGH.get(0).getSoLuongSP()));
-                model_donHang1.setAnhSP(listGH.get(0).getAnhSP());
+                model_donHang1.setTenSP(listGH1.get(0).getTenSP());
+                model_donHang1.setGiaSP(listGH1.get(0).getGiaSP());
+                model_donHang1.setSoLuongSP(String.valueOf(listGH1.get(0).getSoLuongSP()));
+                model_donHang1.setAnhSP(listGH1.get(0).getAnhSP());
                 model_donHang1.setSoLuongSP(arraySlSP[i]);
                 listDHSanPham.add(model_donHang1);
             }
@@ -136,6 +193,7 @@ public class RecyclerView_Oder_Admin extends RecyclerView.Adapter<RecyclerView_O
         TextView txt_oder_madh, txt_oder_trangthai, txt_oder_name, txt_oder_sdt, txt_oder_diachi, txt_oder_tongtien;
         RecyclerView rcy_oder;
         Button btn_huy, btn_xacnhan;
+        LinearLayout layout_trangthai;
         public Holder_Oder_Admin(@NonNull View itemView) {
             super(itemView);
             txt_oder_madh = itemView.findViewById(R.id.txt_oder_madh);
@@ -145,6 +203,7 @@ public class RecyclerView_Oder_Admin extends RecyclerView.Adapter<RecyclerView_O
             txt_oder_diachi = itemView.findViewById(R.id.txt_oder_diachi);
             txt_oder_tongtien = itemView.findViewById(R.id.txt_oder_tongtien);
             btn_huy = itemView.findViewById(R.id.btn_huy);
+            layout_trangthai = itemView.findViewById(R.id.layout_trangthai);
             btn_xacnhan = itemView.findViewById(R.id.btn_xacnhan);
             rcy_oder = itemView.findViewById(R.id.rcy_oder_admin);
 
@@ -173,4 +232,10 @@ public class RecyclerView_Oder_Admin extends RecyclerView.Adapter<RecyclerView_O
             Toast.makeText(context, "Xác nhận thất bại", Toast.LENGTH_SHORT).show();
         }
     }
+
+//    public void update_soluongSP(Model_DonHang model_donHang){
+//        mo
+//
+//
+//    }
 }

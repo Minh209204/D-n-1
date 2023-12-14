@@ -93,7 +93,7 @@ public class InforProduct extends AppCompatActivity {
                 model_gioHang.setTenSP(ten);
                 model_gioHang.setSoLuongSP(1);
                 model_gioHang.setCheckBox(0);
-                model_gioHang.setSoLuong(10);
+                model_gioHang.setTonTai(1);
 
                 if (table_gioHang.insert(model_gioHang)){
                     Toast.makeText(InforProduct.this, "Thêm vào giỏ hàng thành công", Toast.LENGTH_SHORT).show();

@@ -58,7 +58,7 @@ public class Fragment_Cart extends Fragment {
         table_khachHang = new Table_KhachHang(getContext());
         table_donHang = new Table_DonHang(getContext());
         Model_KhachHang model_khachHang = new Model_KhachHang();
-
+        Model_GioHang model_gioHang = new Model_GioHang();
 
         recyclerView = view.findViewById(R.id.recyclerView);
         txt_tong = view.findViewById(R.id.txt_tong);
@@ -71,9 +71,10 @@ public class Fragment_Cart extends Fragment {
         model_khachHang.setMatKhau(matkhau);
 
         List<Model_KhachHang> listKH = table_khachHang.checkKhachHang(model_khachHang);
-        model_khachHang.setMaKH(listKH.get(0).getMaKH());
+        model_gioHang.setTonTai(1);
+        model_gioHang.setMaKH(listKH.get(0).getMaKH());
 
-        listGH = table_gioHang.getAll(model_khachHang);
+        listGH = table_gioHang.getAll(model_gioHang);
         recyclerView_cart = new RecyclerView_Cart(getContext(), listGH);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);

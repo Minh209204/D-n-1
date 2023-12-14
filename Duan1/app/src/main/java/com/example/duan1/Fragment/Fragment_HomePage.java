@@ -32,6 +32,7 @@ public class Fragment_HomePage extends Fragment {
     List<Model_SanPham> list;
     ImageView Hamburger, Pizza, Noodles;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

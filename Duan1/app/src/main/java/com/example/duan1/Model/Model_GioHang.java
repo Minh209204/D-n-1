@@ -3,15 +3,27 @@ package com.example.duan1.Model;
 public class Model_GioHang {
     private int MaGH, MaSP, MaKH;
     private String TenSP, AnhSP;
-    private int GiaSP, CheckBox, SoLuongSP, SoLuong;
+    private int GiaSP, CheckBox, SoLuongSP, SoLuong, TonTai;
 
-    public Model_GioHang(int maSP, String tenSP, String anhSP, int giaSP, int checkBox, int soLuongSP) {
+    public Model_GioHang(int maGH, int maSP, int maKH, String tenSP, String anhSP, int giaSP, int checkBox, int soLuongSP, int soLuong, int tonTai) {
+        MaGH = maGH;
         MaSP = maSP;
+        MaKH = maKH;
         TenSP = tenSP;
         AnhSP = anhSP;
         GiaSP = giaSP;
         CheckBox = checkBox;
         SoLuongSP = soLuongSP;
+        SoLuong = soLuong;
+        TonTai = tonTai;
+    }
+    public Model_GioHang() {
+    }
+    public int getTonTai() {
+        return TonTai;
+    }
+    public void setTonTai(int tonTai) {
+        TonTai = tonTai;
     }
     public int getSoLuong() {
         return SoLuong;
@@ -27,9 +39,6 @@ public class Model_GioHang {
 
     public void setMaKH(int maKH) {
         MaKH = maKH;
-    }
-
-    public Model_GioHang() {
     }
 
     public int getMaGH() {

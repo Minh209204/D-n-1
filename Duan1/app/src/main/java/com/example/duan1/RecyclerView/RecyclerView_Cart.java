@@ -101,9 +101,15 @@ public class RecyclerView_Cart extends RecyclerView.Adapter<RecyclerView_Cart.Ho
                 model_khachHang.setMaKH(listKH.get(0).getMaKH());
 
                 model_gioHang.getMaGH();
-                table_gioHang.delete(model_gioHang);
+                model_gioHang.setTonTai(0);
+                model_gioHang.setCheckBox(0);
+                table_gioHang.update(model_gioHang);
                 list.clear();
-                list = table_gioHang.getAll(model_khachHang);
+
+                Model_GioHang model_gioHang1 = new Model_GioHang();
+                model_gioHang1.setTonTai(1);
+                model_gioHang1.setMaKH(model_gioHang.getMaKH());
+                list = table_gioHang.getAll(model_gioHang1);
                 notifyDataSetChanged();
                 EventBus.getDefault().post(new Event_TongTien_Cart());
             }

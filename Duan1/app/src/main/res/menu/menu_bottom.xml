@@ -17,11 +17,6 @@
         android:title=""/>
 
     <item
-        android:id="@+id/Notification"
-        android:icon="@drawable/notification"
-        android:title=""/>
-
-    <item
         android:id="@+id/Account"
         android:icon="@drawable/account"
         android:title=""/>

@@ -50,7 +50,7 @@ public class DataHelper extends SQLiteOpenHelper {
                 "\t\"GIASP\"\tINTEGER,\n" +
                 "\t\"CHECKBOX\"\tINTEGER,\n" +
                 "\t\"SOLUONGSP\"\tINTEGER,\n" +
-                "\t\"SOLUONG\"\tINTEGER,\n" +
+                "\t\"TONTAI\"\tINTEGER,\n" +
                 "\tFOREIGN KEY(\"MAKH\") REFERENCES \"KHACHHANG\"(\"MAKH\"),\n" +
                 "\tFOREIGN KEY(\"MASP\") REFERENCES \"SANPHAM\"(\"MASP\")\n" +
                 ");";
@@ -58,13 +58,9 @@ public class DataHelper extends SQLiteOpenHelper {
         String DONHANG = "CREATE TABLE \"DONHANG\" (\n" +
                 "\t\"MADH\"\tINTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
                 "\t\"MAGH\"\tTEXT,\n" +
-                "\t\"MASP\"\tINTEGER,\n" +
                 "\t\"MAKH\"\tINTEGER,\n" +
                 "\t\"TENKH\"\tTEXT,\n" +
                 "\t\"SDTKH\"\tTEXT,\n" +
-                "\t\"ANHSP\"\tTEXT,\n" +
-                "\t\"TENSP\"\tINTEGER,\n" +
-                "\t\"GIASP\"\tINTEGER,\n" +
                 "\t\"SOLUONG\"\tINTEGER,\n" +
                 "\t\"TONGTIEN\"\tINTEGER,\n" +
                 "\t\"DIACHIKH\"\tTEXT,\n" +
@@ -94,6 +90,10 @@ public class DataHelper extends SQLiteOpenHelper {
                 "(6,'Cake')," +
                 "(7,'Beer');";
 
+        String data_khachhang = "INSERT INTO KHACHHANG(MAKH, TAIKHOAN,MATKHAU, TENKH,ANHKH, SDTKH,DIACHIKH) VALUES " +
+                "('1','admin',123,'Admin','https://png.pngtree.com/png-clipart/20230801/original/pngtree-avatar-account-administrator-business-call-picture-image_7728050.png','123', 'Ha Noi')," +
+                "('2','khachhang',123,'KhachHang','https://png.pngtree.com/png-clipart/20230801/original/pngtree-avatar-account-administrator-business-call-picture-image_7728050.png','0987654321', 'Ha Noi')";
+
         db.execSQL(KHACHHANG);
         db.execSQL(THELOAI);
         db.execSQL(SANPHAM);
@@ -101,6 +101,7 @@ public class DataHelper extends SQLiteOpenHelper {
         db.execSQL(DONHANG);
         db.execSQL(THONGKE);
         db.execSQL(data_theloai);
+        db.execSQL(data_khachhang);
     }
 
     @Override

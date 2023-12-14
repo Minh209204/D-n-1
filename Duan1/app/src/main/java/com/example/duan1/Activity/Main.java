@@ -15,7 +15,6 @@ import com.example.duan1.Fragment.Fragment_Cart;
 import com.example.duan1.Fragment.Fragment_HomePage;
 import com.example.duan1.Fragment.Fragment_Oder_Admin;
 import com.example.duan1.Fragment.Fragment_Oder_KhachHang;
-import com.example.duan1.Fragment.Fragment_ThongBao;
 import com.example.duan1.Fragment.Fragment_ThongTin_Admin;
 //import com.example.duan1.Fragment.Fragment_ThongTin_KhacHang;
 import com.example.duan1.Fragment.Fragment_ThongTin_KhacHang;
@@ -30,7 +29,6 @@ public class Main extends AppCompatActivity {
     FragmentManager fm;
     Fragment_HomePage fragment_homePage;
     Fragment_Oder_KhachHang fragment_oder_khachHang;
-    Fragment_ThongBao fragment_thongBao;
     Fragment_ThongTin_Admin fragment_thongTin_admin;
     Fragment_ThongTin_KhacHang fragment_thongTin_khacHang;
     Fragment_Oder_Admin fragment_oder_admin;
@@ -48,7 +46,6 @@ public class Main extends AppCompatActivity {
 
         fragment_homePage = new Fragment_HomePage();
         fragment_oder_khachHang = new Fragment_Oder_KhachHang();
-        fragment_thongBao = new Fragment_ThongBao();
         fragment_thongTin_admin = new Fragment_ThongTin_Admin();
         fragment_thongTin_khacHang = new Fragment_ThongTin_KhacHang();
         fragment_oder_admin = new Fragment_Oder_Admin();
@@ -60,13 +57,6 @@ public class Main extends AppCompatActivity {
         fm = getSupportFragmentManager();
 
         fm.beginTransaction().replace(R.id.frameLayout, fragment_homePage).commit();
-
-
-//        model_khachHang.setTaiKhoan(taikhoan);
-//        model_khachHang.setMatKhau(matkhau);
-//
-//        table_khachHang.checkID(model_khachHang);
-
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -84,11 +74,9 @@ public class Main extends AppCompatActivity {
                     fm.beginTransaction().replace(R.id.frameLayout, fragment_oder_admin).commit();
                 }else if (taikhoan.toString() != "admin" && matkhau.toString() != "123" && item.getItemId() == R.id.Oder){
                     fm.beginTransaction().replace(R.id.frameLayout, fragment_oder_khachHang).commit();
-                }else if(item.getItemId() == R.id.Notification){
-                    fm.beginTransaction().replace(R.id.frameLayout, fragment_thongBao).commit();
-                } else if (taikhoan.equals("admin") && matkhau.equals("123") && item.getItemId() == R.id.Account) {
+                }else if (taikhoan.equals("admin") && matkhau.equals("123") && item.getItemId() == R.id.Account) {
                     fm.beginTransaction().replace(R.id.frameLayout, fragment_thongTin_admin).commit();
-                } else if (taikhoan.toString() != "admin" && matkhau.toString() != "123" && item.getItemId() == R.id.Account) {
+                }else if (taikhoan.toString() != "admin" && matkhau.toString() != "123" && item.getItemId() == R.id.Account) {
                     fm.beginTransaction().replace(R.id.frameLayout, fragment_thongTin_khacHang).commit();
                 }
                 return true;

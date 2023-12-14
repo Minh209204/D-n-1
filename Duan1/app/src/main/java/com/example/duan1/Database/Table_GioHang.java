@@ -28,8 +28,8 @@ public class Table_GioHang {
         values.put("ANHSP", gioHang.getAnhSP());
         values.put("TENSP", gioHang.getTenSP());
         values.put("GIASP", gioHang.getGiaSP());
-        values.put("SOLUONG", gioHang.getSoLuong());
         values.put("SOLUONGSP", gioHang.getSoLuongSP());
+        values.put("TONTAI", gioHang.getSoLuongSP());
 
         long result = db.insert("GIOHANG", null, values);
 
@@ -52,19 +52,19 @@ public class Table_GioHang {
         values.put("ANHSP", gioHang.getAnhSP());
         values.put("GIASP", gioHang.getGiaSP());
         values.put("CHECKBOX", gioHang.getCheckBox());
-        values.put("SOLUONG", gioHang.getSoLuong());
         values.put("SOLUONGSP", gioHang.getSoLuongSP());
+        values.put("TONTAI", gioHang.getTonTai());
 
         long result = db.update("GIOHANG", values, "MAGH=?", dieukien);
         return result != -1;
     }
 
     //lay ra san pham cua khach hang theo makh
-    public List<Model_GioHang> getAll(Model_KhachHang model_khachHang){
+    public List<Model_GioHang> getAll(Model_GioHang model_gioHang){
         List<Model_GioHang> list = new ArrayList<>();
-        String dieukien[] = new String[]{String.valueOf(model_khachHang.getMaKH())};
+        String dieukien[] = new String[]{String.valueOf(model_gioHang.getMaKH()), String.valueOf(model_gioHang.getTonTai())};
 
-        Cursor c = db.rawQuery("SELECT * FROM GIOHANG JOIN KHACHHANG ON KHACHHANG.MAKH = GIOHANG.MAKH WHERE GIOHANG.MAKH = ? ", dieukien);
+        Cursor c = db.rawQuery("SELECT * FROM GIOHANG WHERE MAKH = ? AND TONTAI = ? ", dieukien);
         c.moveToFirst();
 
         if (c != null && c.getCount() > 0){
@@ -78,7 +78,7 @@ public class Table_GioHang {
                 int giasp = c.getInt(5);
                 int checkbox = c.getInt(6);
                 int soluongsp = c.getInt(7);
-                int soluong = c.getInt(8);
+                int tontai = c.getInt(8);
 
                 gioHang.setMaGH(magh);
                 gioHang.setMaKH(makh);
@@ -88,7 +88,7 @@ public class Table_GioHang {
                 gioHang.setGiaSP(giasp);
                 gioHang.setCheckBox(checkbox);
                 gioHang.setSoLuongSP(soluongsp);
-                gioHang.setSoLuong(soluong);
+                gioHang.setTonTai(tontai);
 
                 list.add(gioHang);
             }while (c.moveToNext());
@@ -115,7 +115,6 @@ public class Table_GioHang {
                 int giasp = c.getInt(5);
                 int checkbox = c.getInt(6);
                 int soluongsp = c.getInt(7);
-                int soluong = c.getInt(8);
 
                 gioHang.setMaGH(magh);
                 gioHang.setMaKH(makh);
@@ -125,7 +124,6 @@ public class Table_GioHang {
                 gioHang.setGiaSP(giasp);
                 gioHang.setCheckBox(checkbox);
                 gioHang.setSoLuongSP(soluongsp);
-                gioHang.setSoLuong(soluong);
 
                 list.add(gioHang);
             }while (c.moveToNext());
@@ -152,7 +150,6 @@ public class Table_GioHang {
                 int giasp = c.getInt(5);
                 int checkbox = c.getInt(6);
                 int soluongsp = c.getInt(7);
-                int soluong = c.getInt(8);
 
                 gioHang.setMaGH(magh);
                 gioHang.setMaKH(makh);
@@ -162,7 +159,6 @@ public class Table_GioHang {
                 gioHang.setGiaSP(giasp);
                 gioHang.setCheckBox(checkbox);
                 gioHang.setSoLuongSP(soluongsp);
-                gioHang.setSoLuong(soluong);
 
                 list.add(gioHang);
             }while (c.moveToNext());
